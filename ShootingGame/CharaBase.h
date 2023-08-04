@@ -2,7 +2,7 @@
 #include"SphereCollider.h"
 class CharaBase : public SphereCollider
 {
-private:
+protected:
 	float speed;
 	int image;
 

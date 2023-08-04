@@ -32,9 +32,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//画面の初期化
 		PAD_INPUT::UpdateInput();			// PADの入力更新
 		ClearDrawScreen();
-		scene.Draw();
 		//描画処理
-
+		scene.Draw();
+		FPSct.All();
 		//裏画面の内容を表に表示する
 		ScreenFlip();
 	}

@@ -19,7 +19,7 @@ private:
 public:
 	Bullet();
 	~Bullet();
-	void Update();
+	bool Update();
 	void Draw()const;
 	void GetDamage();
 };

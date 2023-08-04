@@ -7,7 +7,7 @@ Bullet::Bullet()
 	radius = 10;
 	damage = 1;
 	speed = 1;
-	angle = 0;
+	angle = (0 * (float)M_PI * 2);
 	acceleration = 0;
 	angleVelocity = 0;
 }
@@ -16,14 +16,27 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::Update()
+bool Bullet::Update()
 {
-	angle = 0.25 * (float)M_PI * 2;
+	angle += angleVelocity;
 	moveX = (speed * cosf(angle));
 	moveY = (speed * sinf(angle));
 	location.x += moveX;
 	location.y += moveY;
 
+	if (location.x < 0) {
+		return false;
+	}
+	if (location.x > SCREEN_WIDTH) {
+		return false;
+	}
+	if (location.y < 0) {
+		return false;
+	}
+	if (location.y > SCREEN_HEIGHT) {
+		return false;
+	}
+	return true;
 }
 
 void Bullet::Draw() const

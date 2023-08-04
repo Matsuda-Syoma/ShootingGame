@@ -1,6 +1,7 @@
 #pragma once
 #include"DxLib.h"
 #include"AbstractScene.h"
+#include"Player.h"
 #include"Enemy.h"
 #include"Bullet.h"
 class GameMain : public AbstractScene
@@ -9,6 +10,7 @@ public:
 
 	Enemy* enemy;
 	Bullet* bullet;
+	Player* player;
 	GameMain();
 	// コンストラクタ
 	~GameMain();								// デストラクタ
