@@ -20,6 +20,10 @@ void Player::Update()
 
 	location.x += speedX;
 	location.y += speedY;
+
+	if (PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_A)) {
+		weapon->Shoot();
+	}
 }
 
 void Player::Draw() const
