@@ -9,7 +9,7 @@ class GameMain : public AbstractScene
 public:
 
 	Enemy* enemy;
-	Bullet* bullet;
+	Bullet* bullet[BULLET_MAX];
 	Player* player;
 	GameMain();
 	// コンストラクタ
@@ -19,5 +19,6 @@ public:
 	void Draw() const override;					// 描画に関することを実装
 	void Game();								// ゲームの処理
 	bool HitCheck();
+	void SpawnBullet();
 };
 
