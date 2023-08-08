@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "GameMain.h"
 Player::Player()
 {
 	location.x = SCREEN_WIDTH / 2;
@@ -13,7 +13,7 @@ Player::~Player()
 {
 }
 
-void Player::Update()
+void Player::Update(GameMain* gamemain)
 {
 	speedX = (round(((float)PAD_INPUT::GetPadThumbLX() / 32767) * 100) / 100) * speed;
 	speedY = (round(((float)PAD_INPUT::GetPadThumbLY() / 32767) * 100) / 100) * speed;
@@ -22,7 +22,7 @@ void Player::Update()
 	location.y += speedY;
 
 	if (PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_A)) {
-		weapon->Shoot();
+		weapon->Shoot(gamemain);
 	}
 }
 

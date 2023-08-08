@@ -13,8 +13,8 @@ GameMain::~GameMain()
 
 AbstractScene* GameMain::Update()
 {
-	player->Update();
-	enemy->Update();
+	player->Update(this);
+	enemy->Update(this);
 	//if (PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_A)) {
 	//	SpawnBullet();
 	//}
@@ -39,6 +39,7 @@ void GameMain::Draw() const
 {
 	player->Draw();
 	enemy->Draw();
+
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] != nullptr) {
 			bullet[i]->Draw();

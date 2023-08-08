@@ -1,12 +1,12 @@
 #include "CharaBase.h"
 #include "DxLib.h"
-void CharaBase::Update()
+#include"GameMain.h"
+void CharaBase::Update(GameMain* gamemain)
 {
 }
 
-CharaBase* CharaBase::Draw() const
+void CharaBase::Draw() const
 {
-	DrawCircle(location.x, location.y, 5, 0xffffff, true);
 }
 
 void CharaBase::Hit()

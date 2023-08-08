@@ -1,5 +1,6 @@
 #pragma once
 #include"SphereCollider.h"
+class GameMain;
 class CharaBase : public SphereCollider
 {
 protected:
@@ -7,8 +8,8 @@ protected:
 	int image;
 
 public:
-	virtual void Update() = 0;		// 更新処理
-	virtual void Draw()const = 0;	// 描画処理
-	virtual void Hit() = 0;			// 当たった時の処理
+	virtual void Update(GameMain* gamemain);		// 更新処理
+	virtual void Draw()const;	// 描画処理
+	virtual void Hit();			// 当たった時の処理
 };
 

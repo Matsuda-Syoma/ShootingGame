@@ -1,4 +1,6 @@
 #include "BulletsSpawner.h"
-void BulletsSpawner::Shoot()
+#include "GameMain.h"
+void BulletsSpawner::Shoot(GameMain* gamemain)
 {
+	gamemain->SpawnBullet();
 }
