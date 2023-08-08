@@ -18,6 +18,7 @@ private:
 
 public:
 	Bullet();
+	Bullet(float _x, float _y, float _angle);
 	~Bullet();
 	bool Update();
 	void Draw()const;

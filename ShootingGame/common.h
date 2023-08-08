@@ -7,4 +7,4 @@
 #define FRAMERATE 60.0			//フレームレート
 #define UPDATETIME 800
 
-#define BULLET_MAX 20
+#define BULLET_MAX 30

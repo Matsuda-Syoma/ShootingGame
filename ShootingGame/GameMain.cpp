@@ -3,7 +3,6 @@
 GameMain::GameMain()
 {
 	enemy = new Enemy;
-	bullet[0] = new Bullet;
 	player = new Player;
 }
 
@@ -22,7 +21,7 @@ AbstractScene* GameMain::Update()
 		if (bullet[i] != nullptr) {
 
 			if (player->HitSphere(bullet[i])) {
-				printfDx("hit");
+				//printfDx("hit");
 			}
 
 			if (!bullet[i]->Update()) {
@@ -58,7 +57,7 @@ bool GameMain::HitCheck()
 void GameMain::SpawnBullet() {
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] == nullptr) {
-			bullet[i] = new Bullet;
+			bullet[i] = new Bullet(player->GetLocation().x, player->GetLocation().y, 0.75);
 			break;
 		}
 	}

@@ -6,7 +6,7 @@ Player::Player()
 	location.y = SCREEN_HEIGHT - 20;
 
 	radius = 3;
-	speed = 5;
+	speed = 3;
 }
 
 Player::~Player()
@@ -20,9 +20,14 @@ void Player::Update(GameMain* gamemain)
 
 	location.x += speedX;
 	location.y += speedY;
-
-	if (PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_A)) {
+	clsDx();
+	printfDx("%d",shootdelay);
+	if (shootdelay > 0) {
+		shootdelay--;
+	}
+	if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_A) && shootdelay <= 0) {
 		weapon->Shoot(gamemain);
+		shootdelay = 5;		// å„Ç≈weaponÇ©ÇÁì«Ç›çûÇﬁÇÊÇ§Ç…Ç∑ÇÈ
 	}
 }
 

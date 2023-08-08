@@ -11,6 +11,7 @@ private:
 	BulletsSpawner* weapon;
 	float speedX;
 	float speedY;
+	int shootdelay = 0;
 
 public:
 	Player();

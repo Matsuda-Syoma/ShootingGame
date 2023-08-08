@@ -1,13 +1,13 @@
 #include "Bullet.h"
 
-Bullet::Bullet()
+Bullet::Bullet(float _x,float _y,float _angle)
 {
-	location.x = SCREEN_WIDTH / 2;
-	location.y = SCREEN_HEIGHT / 2;
-	radius = 10;
+	location.x = _x;
+	location.y = _y;
+	radius = 1;
 	damage = 1;
-	speed = 1;
-	angle = (0 * (float)M_PI * 2);
+	speed = 5;
+	angle = (0.75 * (float)M_PI * 2);
 	acceleration = 0;
 	angleVelocity = 0;
 }
