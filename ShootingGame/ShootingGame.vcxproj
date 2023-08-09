@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boom.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletsSpawner.cpp" />
     <ClCompile Include="CharaBase.cpp" />
@@ -33,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
+    <ClInclude Include="Boom.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletsSpawner.h" />
     <ClInclude Include="CharaBase.h" />

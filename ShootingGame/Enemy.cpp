@@ -23,4 +23,5 @@ void Enemy::Draw() const
 }
 void Enemy::Hit()
 {
+	flg = false;
 }

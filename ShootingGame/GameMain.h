@@ -4,12 +4,14 @@
 #include"Player.h"
 #include"Enemy.h"
 #include"Bullet.h"
+#include"Boom.h"
 class GameMain : public AbstractScene
 {
 public:
 
 	Enemy* enemy[ENEMY_MAX];
 	Bullet* bullet[BULLET_MAX];
+	Boom* boom[ENEMY_MAX];
 	Player* player;
 	GameMain();
 	// コンストラクタ
@@ -20,5 +22,7 @@ public:
 	void Game();								// ゲームの処理
 	bool HitCheck();
 	void SpawnBullet(char* _name);
+	void SpawnBoom(float _x, float _y);
+	void SpawnEnemy();
 };
 

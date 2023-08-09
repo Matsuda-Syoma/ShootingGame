@@ -26,13 +26,13 @@ void Player::Update(GameMain* gamemain)
 	}
 	if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_A) && shootdelay <= 0) {
 		weapon->Shoot(gamemain,name);
-		shootdelay = 5;		// å„Ç≈weaponÇ©ÇÁì«Ç›çûÇﬁÇÊÇ§Ç…Ç∑ÇÈ
+		shootdelay = 2;		// å„Ç≈weaponÇ©ÇÁì«Ç›çûÇﬁÇÊÇ§Ç…Ç∑ÇÈ
 	}
 }
 
 void Player::Draw() const
 {
-	DrawCircle(location.x, location.y, radius, 0x8888ff, true);
+	DrawCircle(location.x, location.y, radius, 0xffffff, true);
 }
 
 void Player::Hit()
