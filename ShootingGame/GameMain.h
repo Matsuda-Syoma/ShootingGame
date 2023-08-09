@@ -7,6 +7,8 @@
 #include"Boom.h"
 class GameMain : public AbstractScene
 {
+private:
+	int EnemySpawnTimer;
 public:
 
 	Enemy* enemy[ENEMY_MAX];

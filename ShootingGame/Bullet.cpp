@@ -8,9 +8,9 @@ Bullet::Bullet(char* _name, float _x,float _y,float _angle)
 	radius = 2;
 	damage = 1;
 	speed = 10;
-	angle = (_angle * (float)M_PI * 2);
+	angle = (_angle * (float)M_PI * 2) / 360;
 	acceleration = 0;
-	angleVelocity = 0;
+	angleVelocity = (0 * (float)M_PI * 2) / 360;
 }
 
 Bullet::~Bullet()

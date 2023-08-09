@@ -1,9 +1,9 @@
 #include "GameMain.h"
-
+#include "EnemySpawn.h"
 GameMain::GameMain()
 {
-	SpawnEnemy();
 	player = new Player;
+	EnemySpawnTimer = 0;
 	Boom::LoadImages();
 }
 
@@ -13,6 +13,7 @@ GameMain::~GameMain()
 
 AbstractScene* GameMain::Update()
 {
+	SpawnEnemy();
 	// プレイヤーの更新
 	player->Update(this);
 
@@ -23,7 +24,7 @@ AbstractScene* GameMain::Update()
 			if (player->HitSphere(enemy[i]) && player->GetFlg()) {
 				SpawnBoom(player->GetLocation().x, player->GetLocation().y);
 				player->SetFlg(false);
-				WaitTimer(500);
+				WaitTimer(250);
 			}
 			enemy[i]->Update(this);
 			if (!enemy[i]->GetFlg()) {
@@ -110,7 +111,7 @@ bool GameMain::HitCheck()
 void GameMain::SpawnBullet(char* parent) {
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] == nullptr) {
-			bullet[i] = new Bullet(parent, player->GetLocation().x, player->GetLocation().y, 0.75);
+			bullet[i] = new Bullet(parent, player->GetLocation().x, player->GetLocation().y, 270);
 			break;
 		}
 	}
@@ -126,10 +127,18 @@ void GameMain::SpawnBoom(float _x, float _y) {
 }
 
 void GameMain::SpawnEnemy() {
-	for (int i = 0; i < ENEMY_MAX; i++) {
-		if (enemy[i] == nullptr) {
-			enemy[i] = new Enemy;
-			break;
+	EnemySpawnTimer++;
+
+	for (int i = 0; i < 63; i++) {
+		if (EnemySpawnTimer == EnemySpawnData[i][2]) {
+			for (int i = 0; i < ENEMY_MAX; i++) {
+				if (enemy[i] == nullptr) {
+					enemy[i] = new Enemy(EnemySpawnData[i][0], EnemySpawnData[i][1],2,90);
+					break;
+				}
+			}
 		}
 	}
+
+
 }

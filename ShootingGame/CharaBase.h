@@ -1,6 +1,7 @@
 #pragma once
 #include"SphereCollider.h"
-#include<string>
+#define _USE_MATH_DEFINES
+#include<math.h>
 class GameMain;
 class CharaBase : public SphereCollider
 {
