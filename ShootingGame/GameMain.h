@@ -8,7 +8,7 @@ class GameMain : public AbstractScene
 {
 public:
 
-	Enemy* enemy;
+	Enemy* enemy[ENEMY_MAX];
 	Bullet* bullet[BULLET_MAX];
 	Player* player;
 	GameMain();

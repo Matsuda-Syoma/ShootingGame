@@ -5,9 +5,9 @@ Bullet::Bullet(char* _name, float _x,float _y,float _angle)
 	location.x = _x;
 	location.y = _y;
 	parent = _name;
-	radius = 1;
+	radius = 2;
 	damage = 1;
-	speed = 5;
+	speed = 10;
 	angle = (_angle * (float)M_PI * 2);
 	acceleration = 0;
 	angleVelocity = 0;

@@ -8,3 +8,4 @@
 #define UPDATETIME 800
 
 #define BULLET_MAX 30
+#define ENEMY_MAX 30

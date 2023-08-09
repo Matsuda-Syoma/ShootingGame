@@ -3,7 +3,7 @@
 Enemy::Enemy()
 {
 	*name = 'e';
-	radius = 5;
+	radius = 10;
 	location.x = 100;
 	location.y = 100;
 }
@@ -14,6 +14,7 @@ Enemy::~Enemy()
 
 void Enemy::Update(GameMain* gamemain)
 {
+	location.y += 1;
 }
 
 void Enemy::Draw() const

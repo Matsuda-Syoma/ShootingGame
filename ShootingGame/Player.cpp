@@ -6,8 +6,8 @@ Player::Player()
 	location.x = SCREEN_WIDTH / 2;
 	location.y = SCREEN_HEIGHT - 20;
 
-	radius = 3;
-	speed = 3;
+	radius = 15;
+	speed = 7;
 }
 
 Player::~Player()
