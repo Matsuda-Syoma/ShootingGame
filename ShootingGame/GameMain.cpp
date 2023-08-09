@@ -19,6 +19,12 @@ AbstractScene* GameMain::Update()
 	// 敵の更新
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (enemy[i] != nullptr) {
+			// プレイヤーが敵に当たったら
+			if (player->HitSphere(enemy[i]) && player->GetFlg()) {
+				SpawnBoom(player->GetLocation().x, player->GetLocation().y);
+				player->SetFlg(false);
+				WaitTimer(500);
+			}
 			enemy[i]->Update(this);
 			if (!enemy[i]->GetFlg()) {
 				enemy[i] = nullptr;
@@ -31,8 +37,9 @@ AbstractScene* GameMain::Update()
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] != nullptr) {
 			// プレイヤーが自分以外の弾に当たったら
-			if (player->HitSphere(bullet[i]) && player->name != bullet[i]->GetParent()) {
-				printfDx("hitp ");
+			if (player->HitSphere(bullet[i]) && player->name != bullet[i]->GetParent() && player->GetFlg()) {
+				SpawnBoom(player->GetLocation().x, player->GetLocation().y);
+				player->SetFlg(false);
 			}
 			// 敵がプレイヤーの弾に当たったら
 			for (int j = 0; j < ENEMY_MAX; j++) {
