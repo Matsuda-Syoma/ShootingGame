@@ -20,9 +20,10 @@ AbstractScene* GameMain::Update()
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] != nullptr) {
 
-			if (player->HitSphere(bullet[i])) {
-				//printfDx("hit");
+			if (player->HitSphere(bullet[i]) && player->name != bullet[i]->GetParent()) {
+				printfDx("hit ");
 			}
+
 
 			if (!bullet[i]->Update()) {
 				bullet[i] = nullptr;
@@ -54,10 +55,10 @@ bool GameMain::HitCheck()
 	return false;
 }
 
-void GameMain::SpawnBullet() {
+void GameMain::SpawnBullet(char* parent) {
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] == nullptr) {
-			bullet[i] = new Bullet(player->GetLocation().x, player->GetLocation().y, 0.75);
+			bullet[i] = new Bullet(parent, player->GetLocation().x, player->GetLocation().y, 0.75);
 			break;
 		}
 	}

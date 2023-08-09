@@ -5,6 +5,10 @@ void CharaBase::Update(GameMain* gamemain)
 {
 }
 
+CharaBase::CharaBase()
+{
+}
+
 void CharaBase::Draw() const
 {
 }

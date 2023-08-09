@@ -1,13 +1,14 @@
 #include "Bullet.h"
 
-Bullet::Bullet(float _x,float _y,float _angle)
+Bullet::Bullet(char* _name, float _x,float _y,float _angle)
 {
 	location.x = _x;
 	location.y = _y;
+	parent = _name;
 	radius = 1;
 	damage = 1;
 	speed = 5;
-	angle = (0.75 * (float)M_PI * 2);
+	angle = (_angle * (float)M_PI * 2);
 	acceleration = 0;
 	angleVelocity = 0;
 }
@@ -46,4 +47,9 @@ void Bullet::Draw() const
 
 void Bullet::GetDamage()
 {
+}
+
+char* Bullet::GetParent()
+{
+	return parent;
 }

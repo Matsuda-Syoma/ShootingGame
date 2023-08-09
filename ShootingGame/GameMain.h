@@ -19,6 +19,6 @@ public:
 	void Draw() const override;					// •`‰æ‚ÉŠÖ‚·‚é‚±‚Æ‚ğÀ‘•
 	void Game();								// ƒQ[ƒ€‚Ìˆ—
 	bool HitCheck();
-	void SpawnBullet();
+	void SpawnBullet(char* _name);
 };
 

@@ -2,6 +2,7 @@
 
 Enemy::Enemy()
 {
+	*name = 'e';
 	radius = 5;
 	location.x = 100;
 	location.y = 100;

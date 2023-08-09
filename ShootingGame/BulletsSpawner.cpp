@@ -1,6 +1,6 @@
 #include "BulletsSpawner.h"
 #include "GameMain.h"
-void BulletsSpawner::Shoot(GameMain* gamemain)
+void BulletsSpawner::Shoot(GameMain* gamemain, char* parent)
 {
-	gamemain->SpawnBullet();
+	gamemain->SpawnBullet(parent);
 }
