@@ -1,16 +1,18 @@
 #pragma once
 #include"DxLib.h"
 #include"AbstractScene.h"
+#include"EnemySpawn.h"
 #include"Player.h"
 #include"Enemy.h"
 #include"Bullet.h"
 #include"Boom.h"
+#include"LoadSounds.h"
 class GameMain : public AbstractScene
 {
 private:
 	int EnemySpawnTimer;
 public:
-
+	EnemySpawn* enemyspawn;
 	Enemy* enemy[ENEMY_MAX];
 	Bullet* bullet[BULLET_MAX];
 	Boom* boom[ENEMY_MAX];

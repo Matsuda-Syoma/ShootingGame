@@ -24,8 +24,10 @@
     <ClCompile Include="BulletsSpawner.cpp" />
     <ClCompile Include="CharaBase.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemySpawn.cpp" />
     <ClCompile Include="FPSController.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="LoadSounds.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PAD_INPUT.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -43,6 +45,7 @@
     <ClInclude Include="EnemySpawn.h" />
     <ClInclude Include="FPSController.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="LoadSounds.h" />
     <ClInclude Include="PAD_INPUT.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneManager.h" />

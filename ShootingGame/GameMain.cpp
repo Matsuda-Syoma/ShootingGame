@@ -1,7 +1,8 @@
 #include "GameMain.h"
-#include "EnemySpawn.h"
 GameMain::GameMain()
 {
+	Sounds::LoadSounds();
+	EnemySpawn::EnemySpawn();
 	player = new Player;
 	EnemySpawnTimer = 0;
 	Boom::LoadImages();
@@ -47,6 +48,7 @@ AbstractScene* GameMain::Update()
 				if (enemy[j] != nullptr) {
 					if (enemy[j]->HitSphere(bullet[i]) && enemy[j]->name != bullet[i]->GetParent() && enemy[j]->GetFlg()) {
 						SpawnBoom(enemy[j]->GetLocation().x, enemy[j]->GetLocation().y);
+						PlaySoundMem(Sounds::SE_Break, DX_PLAYTYPE_BACK, true);
 						enemy[j]->SetFlg(false);
 
 					}
@@ -108,6 +110,7 @@ bool GameMain::HitCheck()
 	return false;
 }
 
+// プレイヤーの弾の出現
 void GameMain::SpawnBullet(char* parent) {
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] == nullptr) {
@@ -117,6 +120,7 @@ void GameMain::SpawnBullet(char* parent) {
 	}
 }
 
+// 爆発の出現
 void GameMain::SpawnBoom(float _x, float _y) {
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (boom[i] == nullptr) {
@@ -126,14 +130,15 @@ void GameMain::SpawnBoom(float _x, float _y) {
 	}
 }
 
+// 敵の出現
 void GameMain::SpawnEnemy() {
 	EnemySpawnTimer++;
 
 	for (int i = 0; i < 63; i++) {
-		if (EnemySpawnTimer == EnemySpawnData[i][2]) {
+		if (EnemySpawnTimer == 10) {
 			for (int i = 0; i < ENEMY_MAX; i++) {
 				if (enemy[i] == nullptr) {
-					enemy[i] = new Enemy(EnemySpawnData[i][0], EnemySpawnData[i][1],2,90);
+					enemy[i] = new Enemy(100, 100,2,90);
 					break;
 				}
 			}

@@ -1,6 +1,23 @@
 #pragma once
-
+#include "common.h"
 // 座標x、座標y、生成フレーム
-float EnemySpawnData[63][3] = {
-	{50,100,0},{100,0,30},{150,0,60},{200,0,90},{250,0,120}
+
+class EnemySpawn
+{
+public:
+	EnemySpawn();
+	~EnemySpawn();
+
+private:
+
+	struct ENEMYDATA
+	{
+		int x;
+		int y;
+		int SpawnTime;
+		int angle;
+		int speed;
+		int Bspeed;
+		int hp;
+	};
 };
