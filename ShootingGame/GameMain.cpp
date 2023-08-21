@@ -3,6 +3,9 @@ GameMain::GameMain()
 {
 	Sounds::LoadSounds();
 	EnemySpawn::EnemySpawn();
+	for (int i = 0; i < 63; i++) {
+		data[i] = EnemySpawn::LoadEnemy(i);
+	}
 	player = new Player;
 	EnemySpawnTimer = 0;
 	Boom::LoadImages();
@@ -26,6 +29,7 @@ AbstractScene* GameMain::Update()
 				SpawnBoom(player->GetLocation().x, player->GetLocation().y);
 				player->SetFlg(false);
 				WaitTimer(250);
+				PlaySoundMem(Sounds::SE_PlayerHit, DX_PLAYTYPE_BACK, true);
 			}
 			enemy[i]->Update(this);
 			if (!enemy[i]->GetFlg()) {
@@ -48,7 +52,7 @@ AbstractScene* GameMain::Update()
 				if (enemy[j] != nullptr) {
 					if (enemy[j]->HitSphere(bullet[i]) && enemy[j]->name != bullet[i]->GetParent() && enemy[j]->GetFlg()) {
 						SpawnBoom(enemy[j]->GetLocation().x, enemy[j]->GetLocation().y);
-						PlaySoundMem(Sounds::SE_Break, DX_PLAYTYPE_BACK, true);
+						PlaySoundMem(Sounds::SE_Hit, DX_PLAYTYPE_BACK, true);
 						enemy[j]->SetFlg(false);
 
 					}
@@ -80,9 +84,6 @@ void GameMain::Draw() const
 {
 	// îwåi
 	DrawBox(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x0031aa, true);
-	for (int i = 1; i < 11; i++) {
-		DrawBox((int)128 * i, 0, (int)128 * i + 10, SCREEN_HEIGHT, 0x6aceee, true);
-	}
 	player->Draw();
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (enemy[i] != nullptr) {
@@ -135,10 +136,10 @@ void GameMain::SpawnEnemy() {
 	EnemySpawnTimer++;
 
 	for (int i = 0; i < 63; i++) {
-		if (EnemySpawnTimer == 10) {
-			for (int i = 0; i < ENEMY_MAX; i++) {
-				if (enemy[i] == nullptr) {
-					enemy[i] = new Enemy(100, 100,2,90);
+		if (EnemySpawnTimer == data[i].SpawnTime) {
+			for (int j = 0; j < ENEMY_MAX; j++) {
+				if (enemy[j] == nullptr) {
+					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].angle);
 					break;
 				}
 			}

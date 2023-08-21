@@ -4,20 +4,12 @@
 
 class EnemySpawn
 {
-public:
-	EnemySpawn();
-	~EnemySpawn();
-
 private:
 
-	struct ENEMYDATA
-	{
-		int x;
-		int y;
-		int SpawnTime;
-		int angle;
-		int speed;
-		int Bspeed;
-		int hp;
-	};
+	static ENEMYDATA data[63];
+public:
+	int row = 0;
+	EnemySpawn();
+	~EnemySpawn();
+	static ENEMYDATA LoadEnemy(int i);
 };

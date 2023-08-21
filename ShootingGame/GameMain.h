@@ -13,6 +13,7 @@ private:
 	int EnemySpawnTimer;
 public:
 	EnemySpawn* enemyspawn;
+	ENEMYDATA data[63];
 	Enemy* enemy[ENEMY_MAX];
 	Bullet* bullet[BULLET_MAX];
 	Boom* boom[ENEMY_MAX];

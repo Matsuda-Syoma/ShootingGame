@@ -27,6 +27,7 @@ void Player::Update(GameMain* gamemain)
 		}
 		if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_A) && shootdelay <= 0) {
 			weapon->Shoot(gamemain, name);
+			PlaySoundMem(Sounds::SE_Shoot, DX_PLAYTYPE_BACK, true);
 			shootdelay = 2;		// å„Ç≈weaponÇ©ÇÁì«Ç›çûÇﬁÇÊÇ§Ç…Ç∑ÇÈ
 		}
 	}

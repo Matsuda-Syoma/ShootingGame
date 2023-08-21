@@ -12,6 +12,7 @@ private:
 	float moveY;
 public:
 
+	// X座標、Y座標、速度、角度
 	Enemy(float _x, float _y, float _speed, float _angle);
 	~Enemy();
 
