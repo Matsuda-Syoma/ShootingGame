@@ -29,6 +29,7 @@
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="LoadSounds.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NwaySpawner.cpp" />
     <ClCompile Include="PAD_INPUT.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="FPSController.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="LoadSounds.h" />
+    <ClInclude Include="NwaySpawner.h" />
     <ClInclude Include="PAD_INPUT.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneManager.h" />
