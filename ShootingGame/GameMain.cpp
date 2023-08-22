@@ -1,6 +1,7 @@
 #include "GameMain.h"
 GameMain::GameMain()
 {
+	GameOverFlg = false;
 	Sounds::LoadSounds();
 	EnemySpawn::EnemySpawn();
 	for (int i = 0; i < 63; i++) {
@@ -24,7 +25,7 @@ AbstractScene* GameMain::Update()
 	player->Update(this);
 
 	// UI‚ÌXV
-	ui->Update(player->GetScore(), PlayerLife);
+	ui->Update(player->GetScore(), PlayerLife, GameOverFlg);
 
 	// “G‚ÌXV
 	for (int i = 0; i < ENEMY_MAX; i++) {
@@ -85,6 +86,14 @@ void GameMain::Draw() const
 {
 	// ”wŒi
 	DrawBox(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x0031aa, true);
+
+	for (int i = 1; i < 10; i++) {
+		DrawBox((int)104 * i, 0, (int)104 * i + 1, SCREEN_HEIGHT, 0x6aceee, true);
+	}
+	for (int i = 0; i < 11; i++) {
+		DrawBox(0, (int)104 * (i) + EnemySpawnTimer % 104, SCREEN_WIDTH, ((int)104 * i + 1) + EnemySpawnTimer % 104, 0x6aceee, true);
+	}
+
 	player->Draw();
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (enemy[i] != nullptr) {
@@ -150,3 +159,19 @@ void GameMain::SpawnEnemy() {
 
 
 }
+
+void GameMain::SetPlayerLife(int _i)
+{
+	PlayerLife += _i;
+}
+
+int GameMain::GetPlayerLife()
+{
+	return PlayerLife;
+}
+
+void GameMain::GameOver()
+{
+	GameOverFlg = true;
+}
+

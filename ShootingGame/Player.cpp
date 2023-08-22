@@ -3,15 +3,23 @@
 Player::Player()
 {
 	*name = 'p';
-	location.x = (SCREEN_WIDTH - UI_WIDTH) / 2;
-	location.y = SCREEN_HEIGHT - 20;
+
+	Init();
 
 	radius = 15;
 	speed = 7;
+
+	SpawnTime = MAXSPAWNTIME;
 }
 
 Player::~Player()
 {
+}
+
+void Player::Init() {
+	flg = true;
+	location.x = (SCREEN_WIDTH - UI_WIDTH) / 2;
+	location.y = SCREEN_HEIGHT - 20;
 }
 
 void Player::Update(GameMain* gamemain)
@@ -22,6 +30,12 @@ void Player::Update(GameMain* gamemain)
 	}
 	if (0 > location.x - radius) {
 		location.x = 0 + radius;
+	}
+	if ((SCREEN_HEIGHT) < location.y + radius) {
+		location.y = SCREEN_HEIGHT - radius;
+	}
+	if (-0 > location.y - radius) {
+		location.y = 0 + radius;
 	}
 	if (flg) {
 		speedX = (round(((float)PAD_INPUT::GetPadThumbLX() / 32767) * 100) / 100) * speed;
@@ -44,7 +58,16 @@ void Player::Update(GameMain* gamemain)
 		location.y += speedY;
 	}
 	else {
-
+		if (--SpawnTime < 0) {
+			if (gamemain->GetPlayerLife() > 0) {
+				Init();
+				gamemain->SetPlayerLife(-1);
+				SpawnTime = MAXSPAWNTIME;
+			}
+			else {
+				gamemain->GameOver();
+			}
+		}
 	}
 }
 

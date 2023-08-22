@@ -12,10 +12,13 @@ private:
 	float speedX;
 	float speedY;
 	int shootdelay = 0;
+	int SpawnTime;
+	const int MAXSPAWNTIME = 90;
 
 public:
 	Player();
 	~Player();
+	void Init();
 	void Update(GameMain* gamemain) override;
 	void Draw()const override;
 	void Hit(GameMain* gamemain);

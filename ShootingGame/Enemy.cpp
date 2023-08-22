@@ -17,6 +17,21 @@ Enemy::~Enemy()
 
 void Enemy::Update(GameMain* gamemain)
 {
+
+	if ((SCREEN_WIDTH - UI_WIDTH) < location.x - radius) {
+		flg = false;
+	}
+	if (0 > location.x + radius) {
+		flg = false;
+	}
+
+	if ((SCREEN_HEIGHT) < location.y - radius) {
+		flg = false;
+	}
+	if (-100 > location.y + radius) {
+		flg = false;
+	}
+
 	moveX = (speed * cosf(angle));
 	moveY = (speed * sinf(angle));
 	location.x += moveX;
