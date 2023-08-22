@@ -13,7 +13,7 @@ void CharaBase::Draw() const
 {
 }
 
-void CharaBase::Hit()
+void CharaBase::Hit(GameMain* gamemain)
 {
 }
 

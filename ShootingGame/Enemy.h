@@ -18,6 +18,6 @@ public:
 
 	void Update(GameMain* gamemain) override;
 	void Draw()const override;
-	void Hit()override;
+	void Hit(GameMain* gamemain)override;
 };
 

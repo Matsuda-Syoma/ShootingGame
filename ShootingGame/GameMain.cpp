@@ -31,11 +31,9 @@ AbstractScene* GameMain::Update()
 		if (enemy[i] != nullptr) {
 			// プレイヤーが敵に当たったら
 			if (player->HitSphere(enemy[i]) && player->GetFlg()) {
-				SpawnBoom(player->GetLocation().x, player->GetLocation().y);
-				player->SetFlg(false);
-				WaitTimer(250);
-				PlaySoundMem(Sounds::SE_PlayerHit, DX_PLAYTYPE_BACK, true);
+				player->Hit(this);
 			}
+			// 敵のフラグが切れたらdeleteする
 			enemy[i]->Update(this);
 			if (!enemy[i]->GetFlg()) {
 				enemy[i] = nullptr;
@@ -49,16 +47,13 @@ AbstractScene* GameMain::Update()
 		if (bullet[i] != nullptr) {
 			// プレイヤーが自分以外の弾に当たったら
 			if (player->HitSphere(bullet[i]) && player->name != bullet[i]->GetParent() && player->GetFlg()) {
-				SpawnBoom(player->GetLocation().x, player->GetLocation().y);
-				player->SetFlg(false);
+				player->Hit(this);
 			}
 			// 敵がプレイヤーの弾に当たったら
 			for (int j = 0; j < ENEMY_MAX; j++) {
 				if (enemy[j] != nullptr) {
 					if (enemy[j]->HitSphere(bullet[i]) && enemy[j]->name != bullet[i]->GetParent() && enemy[j]->GetFlg()) {
-						SpawnBoom(enemy[j]->GetLocation().x, enemy[j]->GetLocation().y);
-						PlaySoundMem(Sounds::SE_Hit, DX_PLAYTYPE_BACK, true);
-						enemy[j]->SetFlg(false);
+						enemy[j]->Hit(this);
 
 					}
 				}

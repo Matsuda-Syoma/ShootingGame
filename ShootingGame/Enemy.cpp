@@ -1,5 +1,5 @@
 #include "Enemy.h"
-
+#include "GameMain.h"
 Enemy::Enemy(float _x, float _y, float _speed,float _angle)
 {
 	*name = 'e';
@@ -26,7 +26,9 @@ void Enemy::Draw() const
 {
 	DrawCircle(location.x,location.y,radius,0x00ff00,true);
 }
-void Enemy::Hit()
+void Enemy::Hit(GameMain* gamemain)
 {
-	flg = false;
+	gamemain->SpawnBoom(location.x,location.y);
+	PlaySoundMem(Sounds::SE_Hit, DX_PLAYTYPE_BACK, true);
+	SetFlg(false);
 }

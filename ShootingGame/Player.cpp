@@ -55,8 +55,12 @@ void Player::Draw() const
 	}
 }
 
-void Player::Hit()
+void Player::Hit(GameMain* gamemain)
 {
+	gamemain->SpawnBoom(location.x, location.y);
+	SetFlg(false);
+	WaitTimer(250);
+	PlaySoundMem(Sounds::SE_PlayerHit, DX_PLAYTYPE_BACK, true);
 }
 
 int Player::GetScore()
