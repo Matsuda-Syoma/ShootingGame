@@ -2,7 +2,7 @@
 #include "DxLib.h"
 
 ENEMYDATA EnemySpawn::data[63];
-
+int EnemySpawn::row;
 EnemySpawn::EnemySpawn()
 {
 	int fp;
@@ -10,7 +10,7 @@ EnemySpawn::EnemySpawn()
 	char c;
 	int a;
 	int col = 1;	// óÒ
-	int row = 0;	// çs
+	row = 0;	// çs
 	int count = 0;
 
 	memset(buf, 0, sizeof(buf));
@@ -111,4 +111,9 @@ EnemySpawn::~EnemySpawn()
 ENEMYDATA EnemySpawn::LoadEnemy(int i)
 {
 	return data[i];
+}
+
+int EnemySpawn::GetMaxEnemy()
+{
+	return row;
 }

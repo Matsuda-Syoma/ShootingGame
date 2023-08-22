@@ -14,8 +14,8 @@ private:
 	int EnemySpawnTimer;
 	int PlayerLife;
 	bool GameOverFlg;
+	int MaxEnemy;
 public:
-	EnemySpawn* enemyspawn;
 	ENEMYDATA data[63];
 	Enemy* enemy[ENEMY_MAX];
 	Bullet* bullet[BULLET_MAX];

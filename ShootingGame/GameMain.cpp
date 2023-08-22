@@ -4,7 +4,8 @@ GameMain::GameMain()
 	GameOverFlg = false;
 	Sounds::LoadSounds();
 	EnemySpawn::EnemySpawn();
-	for (int i = 0; i < 63; i++) {
+	MaxEnemy = EnemySpawn::GetMaxEnemy();
+	for (int i = 0; i < MaxEnemy; i++) {
 		data[i] = EnemySpawn::LoadEnemy(i);
 	}
 	PlayerLife = 2;
@@ -27,6 +28,11 @@ AbstractScene* GameMain::Update()
 	// UIの更新
 	ui->Update(player->GetScore(), PlayerLife, GameOverFlg);
 
+	// ゲームクリア
+	if (MaxEnemy <= 0) {
+
+	}
+
 	// 敵の更新
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (enemy[i] != nullptr) {
@@ -37,6 +43,7 @@ AbstractScene* GameMain::Update()
 			// 敵のフラグが切れたらdeleteする
 			enemy[i]->Update(this);
 			if (!enemy[i]->GetFlg()) {
+				MaxEnemy--;
 				enemy[i] = nullptr;
 				delete enemy[i];
 			}
@@ -174,4 +181,3 @@ void GameMain::GameOver()
 {
 	GameOverFlg = true;
 }
-

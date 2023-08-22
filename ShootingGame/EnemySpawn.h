@@ -7,9 +7,10 @@ class EnemySpawn
 private:
 
 	static ENEMYDATA data[63];
+	static int row;
 public:
-	int row = 0;
 	EnemySpawn();
 	~EnemySpawn();
 	static ENEMYDATA LoadEnemy(int i);
+	static int GetMaxEnemy();
 };
