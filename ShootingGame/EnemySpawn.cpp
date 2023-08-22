@@ -7,10 +7,10 @@ EnemySpawn::EnemySpawn()
 {
 	int fp;
 	char buf[100];
-	char dust[7][100];
 	char c;
 	int a;
 	int col = 1;	// 列
+	int row = 0;	// 行
 	int count = 0;
 
 	memset(buf, 0, sizeof(buf));
@@ -73,6 +73,10 @@ EnemySpawn::EnemySpawn()
 			// HP
 		case 7:
 			data[row].hp = atoi(buf); 
+			break;
+		// スコア
+		case 8:
+			data[row].score = atoi(buf);
 			break;
 		}
 		memset(buf, 0, sizeof(buf));

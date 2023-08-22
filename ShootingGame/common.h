@@ -21,4 +21,5 @@ struct ENEMYDATA
 	int speed;
 	int Bspeed;
 	int hp;
+	int score;
 };

@@ -20,5 +20,6 @@ public:
 	void Draw()const override;
 	void Hit(GameMain* gamemain);
 	int GetScore();
+	void SetScore(int _score);
 };
 

@@ -10,14 +10,16 @@ private:
 	float angleVelocity;// 角度の変化量
 	float moveX;
 	float moveY;
+	int point = 0;
 public:
 
-	// X座標、Y座標、速度、角度
-	Enemy(float _x, float _y, float _speed, float _angle);
+	// X座標、Y座標、速度、角度、スコア
+	Enemy(float _x, float _y, float _speed, float _angle, int _score);
 	~Enemy();
 
 	void Update(GameMain* gamemain) override;
 	void Draw()const override;
 	void Hit(GameMain* gamemain)override;
+	int GetPoint();
 };
 

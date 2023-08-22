@@ -54,6 +54,7 @@ AbstractScene* GameMain::Update()
 				if (enemy[j] != nullptr) {
 					if (enemy[j]->HitSphere(bullet[i]) && enemy[j]->name != bullet[i]->GetParent() && enemy[j]->GetFlg()) {
 						enemy[j]->Hit(this);
+						player->SetScore(enemy[j]->GetPoint());
 
 					}
 				}
@@ -140,7 +141,7 @@ void GameMain::SpawnEnemy() {
 		if (EnemySpawnTimer == data[i].SpawnTime) {
 			for (int j = 0; j < ENEMY_MAX; j++) {
 				if (enemy[j] == nullptr) {
-					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].angle);
+					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].angle, data[i].score);
 					break;
 				}
 			}

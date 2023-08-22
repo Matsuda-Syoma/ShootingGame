@@ -3,7 +3,7 @@
 Player::Player()
 {
 	*name = 'p';
-	location.x = SCREEN_WIDTH / 2;
+	location.x = (SCREEN_WIDTH - UI_WIDTH) / 2;
 	location.y = SCREEN_HEIGHT - 20;
 
 	radius = 15;
@@ -67,3 +67,9 @@ int Player::GetScore()
 {
 	return Score;
 }
+
+void Player::SetScore(int _score)
+{
+	Score += _score;
+}
+
