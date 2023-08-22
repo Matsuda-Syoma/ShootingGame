@@ -9,6 +9,6 @@ private:
 	float acceleration;		// ‘¬“x‚Ì•Ï‰»—Ê
 	float angleVelocity;	// Šp“x‚Ì•Ï‰»—Ê
 public:
-	void Shoot(GameMain* ,char* _name);
+	void Shoot(GameMain* gamemain, char* parentname, SphereCollider* parentcollider);
 };
 

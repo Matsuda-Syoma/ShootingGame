@@ -7,7 +7,7 @@ class GameMain;						// ‘O•ûéŒ¾
 class Player : public CharaBase
 {
 private:
-	int score;
+	int Score;
 	BulletsSpawner* weapon;
 	float speedX;
 	float speedY;
@@ -19,5 +19,6 @@ public:
 	void Update(GameMain* gamemain) override;
 	void Draw()const override;
 	void Hit()override;
+	int GetScore();
 };
 

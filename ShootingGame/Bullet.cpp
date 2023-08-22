@@ -42,7 +42,10 @@ bool Bullet::Update()
 
 void Bullet::Draw() const
 {
+	DrawCircle(location.x, location.y, radius - 2, 0xffffff, true);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 127);
 	DrawCircle(location.x, location.y, radius, 0xffffff, true);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 }
 
 void Bullet::GetDamage()

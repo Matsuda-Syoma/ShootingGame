@@ -6,7 +6,9 @@ GameMain::GameMain()
 	for (int i = 0; i < 63; i++) {
 		data[i] = EnemySpawn::LoadEnemy(i);
 	}
+	PlayerLife = 2;
 	player = new Player;
+	ui = new UI;
 	EnemySpawnTimer = 0;
 	Boom::LoadImages();
 }
@@ -20,6 +22,9 @@ AbstractScene* GameMain::Update()
 	SpawnEnemy();
 	// プレイヤーの更新
 	player->Update(this);
+
+	// UIの更新
+	ui->Update(player->GetScore(), PlayerLife);
 
 	// 敵の更新
 	for (int i = 0; i < ENEMY_MAX; i++) {
@@ -101,6 +106,7 @@ void GameMain::Draw() const
 			boom[i]->Draw();
 		}
 	}
+	ui->Draw();
 }
 
 void GameMain::Game()
@@ -112,10 +118,10 @@ bool GameMain::HitCheck()
 }
 
 // プレイヤーの弾の出現
-void GameMain::SpawnBullet(char* parent) {
+void GameMain::SpawnBullet(char* parentname, SphereCollider* parentcollider) {
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] == nullptr) {
-			bullet[i] = new Bullet(parent, player->GetLocation().x, player->GetLocation().y, 270);
+			bullet[i] = new Bullet(parentname, parentcollider->GetLocation().x, parentcollider->GetLocation().y, 270);
 			break;
 		}
 	}
