@@ -9,6 +9,7 @@ Enemy::Enemy(float _x, float _y, float _speed,float _angle,int _score)
 	speed = _speed;
 	angle = (_angle * (float)M_PI * 2) / 360;
 	point = _score;
+	ShootDelay = 12;
 }
 
 Enemy::~Enemy()
@@ -17,6 +18,13 @@ Enemy::~Enemy()
 
 void Enemy::Update(GameMain* gamemain)
 {
+	float ShootAngleX = gamemain->GetPlayer().x - location.x;
+	float ShootAngleY = gamemain->GetPlayer().y - location.y;
+	float Normalize = atan2(ShootAngleX, ShootAngleY) * 180.0f / M_PI;
+	if (--ShootDelay < 0) {
+		weapon->Shoot(gamemain, name, this, 90 - Normalize);
+		ShootDelay = 60;
+	}
 
 	if ((SCREEN_WIDTH - UI_WIDTH) < location.x - radius) {
 		flg = false;

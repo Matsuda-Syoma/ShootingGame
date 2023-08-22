@@ -45,7 +45,7 @@ void Player::Update(GameMain* gamemain)
 			shootdelay--;
 		}
 		if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_A) && shootdelay <= 0 || PAD_INPUT::GetNowKey(XINPUT_BUTTON_B) && shootdelay <= 0) {
-			weapon->Shoot(gamemain, name, this);
+			weapon->Shoot(gamemain, name, this,270);
 			PlaySoundMem(Sounds::SE_Shoot, DX_PLAYTYPE_BACK, true);
 			shootdelay = 6;		// å„Ç≈weaponÇ©ÇÁì«Ç›çûÇﬁÇÊÇ§Ç…Ç∑ÇÈ
 		}

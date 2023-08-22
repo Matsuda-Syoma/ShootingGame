@@ -1,6 +1,7 @@
 #pragma once
 #include"CharaBase.h"
 #include"DxLib.h"
+#include"BulletsSpawner.h"
 class GameMain;							// 前方宣言
 class Enemy : public CharaBase
 {
@@ -11,6 +12,8 @@ private:
 	float moveX;
 	float moveY;
 	int point = 0;
+	BulletsSpawner* weapon;
+	int ShootDelay;
 public:
 
 	// X座標、Y座標、速度、角度、スコア

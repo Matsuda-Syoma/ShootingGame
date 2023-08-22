@@ -129,11 +129,11 @@ bool GameMain::HitCheck()
 	return false;
 }
 
-// プレイヤーの弾の出現
-void GameMain::SpawnBullet(char* parentname, SphereCollider* parentcollider) {
+// 弾の出現
+void GameMain::SpawnBullet(char* parentname, SphereCollider* parentcollider, float _angle) {
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] == nullptr) {
-			bullet[i] = new Bullet(parentname, parentcollider->GetLocation().x, parentcollider->GetLocation().y, 270);
+			bullet[i] = new Bullet(parentname, parentcollider->GetLocation().x, parentcollider->GetLocation().y, _angle);
 			break;
 		}
 	}
@@ -180,4 +180,9 @@ int GameMain::GetPlayerLife()
 void GameMain::GameOver()
 {
 	GameOverFlg = true;
+}
+
+Location GameMain::GetPlayer() 
+{
+	return player->GetLocation();
 }
