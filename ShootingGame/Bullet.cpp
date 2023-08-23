@@ -1,13 +1,13 @@
 #include "Bullet.h"
 
-Bullet::Bullet(char _name, float _x,float _y,float _angle)
+Bullet::Bullet(char _name, float _x,float _y,float _angle, int _speed)
 {
 	location.x = _x;
 	location.y = _y;
 	parent = _name;
 	radius = 2;
 	damage = 1;
-	speed = 10;
+	speed = _speed;
 	angle = (_angle * (float)M_PI * 2) / 360;
 	acceleration = 0;
 	angleVelocity = (0 * (float)M_PI * 2) / 360;

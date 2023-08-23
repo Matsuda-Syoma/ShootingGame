@@ -19,7 +19,7 @@ private:
 
 public:
 	Bullet();
-	Bullet(char _name, float _x, float _y, float _angle);
+	Bullet(char _name, float _x, float _y, float _angle, int _speed);
 	~Bullet();
 	bool Update();
 	void Draw()const;

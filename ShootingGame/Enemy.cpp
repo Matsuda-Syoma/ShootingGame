@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "GameMain.h"
-Enemy::Enemy(float _x, float _y, float _speed,float _angle,int _score)
+Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _score, int _bcount)
 {
 	name = 'e';
 	radius = 10;
@@ -10,10 +10,13 @@ Enemy::Enemy(float _x, float _y, float _speed,float _angle,int _score)
 	angle = (_angle * (float)M_PI * 2) / 360;
 	point = _score;
 	ShootDelay = 12;
+	Bcount = _bcount;
+	Bspeed = _bspeed;
 }
 
 Enemy::~Enemy()
 {
+	delete weapon;
 }
 
 void Enemy::Update(GameMain* gamemain)
@@ -22,7 +25,7 @@ void Enemy::Update(GameMain* gamemain)
 	float ShootAngleY = gamemain->GetPlayer().y - location.y;
 	float Normalize = atan2(ShootAngleX, ShootAngleY) * 180.0f / M_PI;
 	if (--ShootDelay < 0) {
-		weapon->Shoot(gamemain, name, this, 90 - Normalize);
+		weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed);
 		ShootDelay = 60;
 	}
 

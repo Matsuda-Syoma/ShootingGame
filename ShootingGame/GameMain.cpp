@@ -130,10 +130,10 @@ bool GameMain::HitCheck()
 }
 
 // íeÇÃèoåª
-void GameMain::SpawnBullet(char parentname, SphereCollider* parentcollider, float _angle) {
+void GameMain::SpawnBullet(char parentname, SphereCollider* parentcollider, float _angle, int _speed) {
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] == nullptr) {
-			bullet[i] = new Bullet(parentname, parentcollider->GetLocation().x, parentcollider->GetLocation().y, _angle);
+			bullet[i] = new Bullet(parentname, parentcollider->GetLocation().x, parentcollider->GetLocation().y, _angle, _speed);
 			break;
 		}
 	}
@@ -157,7 +157,7 @@ void GameMain::SpawnEnemy() {
 		if (EnemySpawnTimer == data[i].SpawnTime) {
 			for (int j = 0; j < ENEMY_MAX; j++) {
 				if (enemy[j] == nullptr) {
-					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].angle, data[i].score);
+					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].Bspeed, data[i].angle, data[i].score, data[i].Bcount);
 					break;
 				}
 			}

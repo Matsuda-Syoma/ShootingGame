@@ -2,13 +2,13 @@
 #include"common.h"
 #include"CharaBase.h"
 #include"PAD_INPUT.h"
-#include"BulletsSpawner.h"
+#include"NwaySpawner.h"
 class GameMain;						// ‘O•ûéŒ¾
 class Player : public CharaBase
 {
 private:
 	int Score;
-	BulletsSpawner* weapon;
+	NwaySpawner* weapon = new NwaySpawner;
 	float speedX;
 	float speedY;
 	int shootdelay = 0;

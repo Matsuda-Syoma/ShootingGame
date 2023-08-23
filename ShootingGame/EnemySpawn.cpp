@@ -8,9 +8,8 @@ EnemySpawn::EnemySpawn()
 	int fp;
 	char buf[100];
 	char c;
-	int a;
 	int col = 1;	// 列
-	row = 0;	// 行
+	row = 0;		// 行
 	int count = 0;
 
 	memset(buf, 0, sizeof(buf));
@@ -70,12 +69,17 @@ EnemySpawn::EnemySpawn()
 			data[row].Bspeed = atoi(buf);
 			break;
 
-			// HP
+			// 弾数
 		case 7:
+			data[row].Bcount = atoi(buf);
+			break;
+
+			// HP
+		case 8:
 			data[row].hp = atoi(buf); 
 			break;
 		// スコア
-		case 8:
+		case 9:
 			data[row].score = atoi(buf);
 			break;
 		}
