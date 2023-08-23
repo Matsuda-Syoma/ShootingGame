@@ -2,7 +2,7 @@
 #include "GameMain.h"
 Player::Player()
 {
-	*name = 'p';
+	name = 'p';
 
 	Init();
 

@@ -130,7 +130,7 @@ bool GameMain::HitCheck()
 }
 
 // ’e‚ÌoŒ»
-void GameMain::SpawnBullet(char* parentname, SphereCollider* parentcollider, float _angle) {
+void GameMain::SpawnBullet(char parentname, SphereCollider* parentcollider, float _angle) {
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] == nullptr) {
 			bullet[i] = new Bullet(parentname, parentcollider->GetLocation().x, parentcollider->GetLocation().y, _angle);

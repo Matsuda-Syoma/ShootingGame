@@ -11,7 +11,7 @@ protected:
 	int image;
 
 public:
-	char name[3] = "n";
+	char name = 'n';
 	CharaBase();
 	virtual void Update(GameMain* gamemain);		// XVˆ—
 	virtual void Draw()const;	// •`‰æˆ—

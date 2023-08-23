@@ -30,7 +30,7 @@ public:
 	void Draw() const override;					// 描画に関することを実装
 	void Game();								// ゲームの処理
 	bool HitCheck();							
-	void SpawnBullet(char* parentname, SphereCollider* parentcollider, float _angle);
+	void SpawnBullet(char parentname, SphereCollider* parentcollider, float _angle);
 	void SpawnBoom(float _x, float _y);			// やられた時のエフェクトをスポーン
 	void SpawnEnemy();							// 敵のスポーン
 	void SetPlayerLife(int _i);					// プレイヤーの残機を設定

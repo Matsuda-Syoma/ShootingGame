@@ -15,15 +15,15 @@ private:
 	float angleVelocity;// Šp“x‚Ì•Ï‰»—Ê
 	float moveX;
 	float moveY;
-	char *parent;
+	char parent;
 
 public:
 	Bullet();
-	Bullet(char* _name, float _x, float _y, float _angle);
+	Bullet(char _name, float _x, float _y, float _angle);
 	~Bullet();
 	bool Update();
 	void Draw()const;
 	void GetDamage();
-	char* GetParent();
+	char GetParent();
 };
 

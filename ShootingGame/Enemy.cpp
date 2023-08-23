@@ -2,7 +2,7 @@
 #include "GameMain.h"
 Enemy::Enemy(float _x, float _y, float _speed,float _angle,int _score)
 {
-	*name = 'e';
+	name = 'e';
 	radius = 10;
 	location.x = _x;
 	location.y = _y;

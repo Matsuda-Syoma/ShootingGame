@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(char* _name, float _x,float _y,float _angle)
+Bullet::Bullet(char _name, float _x,float _y,float _angle)
 {
 	location.x = _x;
 	location.y = _y;
@@ -52,7 +52,7 @@ void Bullet::GetDamage()
 {
 }
 
-char* Bullet::GetParent()
+char Bullet::GetParent()
 {
 	return parent;
 }
