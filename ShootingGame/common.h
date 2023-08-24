@@ -11,6 +11,7 @@
 
 #define BULLET_MAX 255
 #define ENEMY_MAX 30
+#define CIRCLE_MAX 2
 
 struct ENEMYDATA
 {

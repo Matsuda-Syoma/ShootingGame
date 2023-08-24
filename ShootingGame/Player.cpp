@@ -4,8 +4,6 @@ Player::Player()
 {
 	name = 'p';
 
-	SpawnCircle = LoadGraph("Resources/images/circle.png");
-
 	Init();
 
 	radius = 5;
@@ -27,6 +25,7 @@ void Player::Init() {
 void Player::Update(GameMain* gamemain)
 {
 
+	// 画面外に出ないようにする
 	if ((SCREEN_WIDTH - UI_WIDTH) < location.x + radius) {
 		location.x = (SCREEN_WIDTH - UI_WIDTH) - (float)radius;
 	}
@@ -39,6 +38,8 @@ void Player::Update(GameMain* gamemain)
 	if (-0 > location.y - radius) {
 		location.y = 0 + (float)radius;
 	}
+
+	// フラグがたっているときの処理
 	if (flg) {
 		speedX = (round(((float)PAD_INPUT::GetPadThumbLX() / 32767) * 100) / 100) * speed;
 		speedY = (round(((float)PAD_INPUT::GetPadThumbLY() / 32767) * 100) / 100) * speed;
@@ -60,9 +61,10 @@ void Player::Update(GameMain* gamemain)
 	}
 	else {
 		if (--SpawnTime < 0) {
-			if (gamemain->GetPlayerLife() > 0) {
+			if (gamemain->GetPlayerLife() >= 0) {
 				Init();
 				gamemain->SetPlayerLife(-1);
+				gamemain->SpawnCircle(location.x, location.y, 20);
 				SpawnTime = MAXSPAWNTIME;
 			}
 			else {
@@ -76,7 +78,6 @@ void Player::Draw(int camerashake) const
 {
 	if (flg) {
 		DrawCircle(location.x + camerashake, location.y + camerashake, radius, 0xffffff, true);
-		DrawCircleGauge(location.x, location.y, 90,true,SpawnCircle);
 	}
 }
 

@@ -6,7 +6,7 @@ GameMain::GameMain()
 	GameOverFlg = false;
 	Sounds::LoadSounds();
 	Boom::LoadImages();
-
+	DeleteCircle::LoadImages();
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		enemy[i] = 0;
 	}
@@ -105,6 +105,16 @@ AbstractScene* GameMain::Update()
 		}
 	}
 
+	// ‰~‚ÌXVˆ—
+	for (int i = 0; i < CIRCLE_MAX; i++) {
+		if (deletecircle[i] != nullptr) {
+			if (!deletecircle[i]->Update()) {
+				deletecircle[i] = nullptr;
+				delete deletecircle[i];
+			}
+		}
+	}
+
 	return this;
 }
 
@@ -144,6 +154,14 @@ void GameMain::Draw() const
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (boom[i] != nullptr) {
 			boom[i]->Draw();
+		}
+	}
+
+
+	// ‰~‚Ì•`‰æ
+	for (int i = 0; i < CIRCLE_MAX; i++) {
+		if (deletecircle[i] != nullptr) {
+			deletecircle[i]->Draw();
 		}
 	}
 
@@ -196,8 +214,17 @@ void GameMain::SpawnEnemy() {
 			}
 		}
 	}
+}
 
-
+// ’e‚ğÁ‚·‰~‚ÌoŒ»
+void GameMain::SpawnCircle(float _x, float _y, int _i) {
+	// ‰~‚ªnullptr‚¾‚Á‚½‚ç¶¬‚µ‚Äƒ‹[ƒv‚ğ”²‚¯‚é
+	for (int i = 0; i < CIRCLE_MAX; i++) {
+		if (deletecircle[i] == nullptr) {
+			deletecircle[i] = new DeleteCircle(_x, _y, _i);
+			break;
+		}
+	}
 }
 
 void GameMain::SetPlayerLife(int _i)

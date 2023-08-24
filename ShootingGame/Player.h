@@ -11,7 +11,8 @@ private:
 	NwaySpawner* weapon = new NwaySpawner;
 	float speedX;
 	float speedY;
-	int SpawnCircle;
+	float SpawnCount = 0;
+	int MAXSPAWNCOUNT = 20;
 	int shootdelay = 0;
 	int SpawnTime;
 	const int MAXSPAWNTIME = 90;
