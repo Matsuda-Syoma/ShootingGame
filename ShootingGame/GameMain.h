@@ -42,5 +42,6 @@ public:
 	void GameOver();
 	Location GetPlayer();
 	void CameraUpdate();
+	void SetCameraShake(int _i);
 };
 

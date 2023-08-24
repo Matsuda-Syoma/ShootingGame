@@ -17,6 +17,7 @@ bool DeleteCircle::Update()
 {
 	if (flg) {
 		if (SpawnCircleCount > 0) {
+			radius = MaxSpawnCount * 20 - SpawnCircleCount * 20;
 			SpawnCircleCount--;
 			return true;
 		}

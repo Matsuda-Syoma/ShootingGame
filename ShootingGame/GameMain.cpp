@@ -56,7 +56,6 @@ AbstractScene* GameMain::Update()
 			// プレイヤーが敵に当たったら
 			if (player->HitSphere(enemy[i]) && player->GetFlg()) {
 				player->Hit(this);
-				CamerashakeCount = 11;
 			}
 			// 敵のフラグが切れたらdeleteする
 			enemy[i]->Update(this);
@@ -73,7 +72,6 @@ AbstractScene* GameMain::Update()
 		if (bullet[i] != nullptr) {
 			// プレイヤーが自分以外の弾に当たったら
 			if (player->HitSphere(bullet[i]) && player->name != bullet[i]->GetParent() && player->GetFlg()) {
-				CamerashakeCount = 11;
 				player->Hit(this);
 			}
 			// 敵がプレイヤーの弾に当たったら
@@ -86,7 +84,6 @@ AbstractScene* GameMain::Update()
 					}
 				}
 			}
-
 			// 弾の更新処理
 			if (!bullet[i]->Update()) {
 				bullet[i] = nullptr;
@@ -108,6 +105,14 @@ AbstractScene* GameMain::Update()
 	// 円の更新処理
 	for (int i = 0; i < CIRCLE_MAX; i++) {
 		if (deletecircle[i] != nullptr) {
+			for (int j = 0; j < BULLET_MAX; j++) {
+					if (bullet[j] != nullptr) {
+						if (deletecircle[i]->HitSphere(bullet[j])) {
+							bullet[j] = nullptr;
+							delete bullet[j];
+						}
+					}
+				}
 			if (!deletecircle[i]->Update()) {
 				deletecircle[i] = nullptr;
 				delete deletecircle[i];
@@ -255,4 +260,8 @@ void GameMain::CameraUpdate() {
 		}
 		CamerashakeCount--;
 	}
+}
+
+void GameMain::SetCameraShake(int _i) {
+	CamerashakeCount = _i;
 }

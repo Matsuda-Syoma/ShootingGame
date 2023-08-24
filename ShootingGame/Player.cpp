@@ -9,6 +9,8 @@ Player::Player()
 	radius = 5;
 	speed = 7;
 
+	SpawnCount = 0;
+
 	SpawnTime = MAXSPAWNTIME;
 }
 
@@ -39,6 +41,10 @@ void Player::Update(GameMain* gamemain)
 		location.y = 0 + (float)radius;
 	}
 
+	if (SpawnCount > 0) {
+		SpawnCount--;
+	}
+
 	// ƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚Æ‚«‚Ìˆ—
 	if (flg) {
 		speedX = (round(((float)PAD_INPUT::GetPadThumbLX() / 32767) * 100) / 100) * speed;
@@ -64,7 +70,8 @@ void Player::Update(GameMain* gamemain)
 			if (gamemain->GetPlayerLife() >= 0) {
 				Init();
 				gamemain->SetPlayerLife(-1);
-				gamemain->SpawnCircle(location.x, location.y, 20);
+				gamemain->SpawnCircle(location.x, location.y, MAXSPAWNCOUNT);
+				SpawnCount = MAXSPAWNCOUNT;
 				SpawnTime = MAXSPAWNTIME;
 			}
 			else {
@@ -83,10 +90,13 @@ void Player::Draw(int camerashake) const
 
 void Player::Hit(GameMain* gamemain)
 {
-	gamemain->SpawnBoom(location.x, location.y);
-	SetFlg(false);
-	WaitTimer(250);
-	PlaySoundMem(Sounds::SE_PlayerHit, DX_PLAYTYPE_BACK, true);
+	if (SpawnCount <= 0) {
+		gamemain->SpawnBoom(location.x, location.y);
+		gamemain->SetCameraShake(11);
+		SetFlg(false);
+		WaitTimer(250);
+		PlaySoundMem(Sounds::SE_PlayerHit, DX_PLAYTYPE_BACK, true);
+	}
 }
 
 int Player::GetScore()
