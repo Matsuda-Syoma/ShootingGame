@@ -15,6 +15,8 @@ private:
 	int PlayerLife;
 	bool GameOverFlg;
 	int MaxEnemy;
+	int CamerashakeCount;
+	int Camerashake;
 public:
 	ENEMYDATA data[63];
 	Enemy* enemy[ENEMY_MAX];

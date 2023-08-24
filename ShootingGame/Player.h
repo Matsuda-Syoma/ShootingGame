@@ -20,7 +20,7 @@ public:
 	~Player();
 	void Init();
 	void Update(GameMain* gamemain) override;
-	void Draw()const override;
+	void Draw(int camerashake)const override;
 	void Hit(GameMain* gamemain);
 	int GetScore();
 	void SetScore(int _score);

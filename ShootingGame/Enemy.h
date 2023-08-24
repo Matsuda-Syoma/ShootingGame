@@ -24,7 +24,7 @@ public:
 	~Enemy();
 
 	void Update(GameMain* gamemain) override;
-	void Draw()const override;
+	void Draw(int camerashake)const override;
 	void Hit(GameMain* gamemain)override;
 	int GetPoint();
 };

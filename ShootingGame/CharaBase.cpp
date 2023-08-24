@@ -9,7 +9,7 @@ CharaBase::CharaBase()
 {
 }
 
-void CharaBase::Draw() const
+void CharaBase::Draw(int camerashake) const
 {
 }
 

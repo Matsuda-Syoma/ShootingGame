@@ -49,9 +49,9 @@ void Enemy::Update(GameMain* gamemain)
 	location.y += moveY;
 }
 
-void Enemy::Draw() const
+void Enemy::Draw(int camerashake) const
 {
-	DrawCircle(location.x,location.y,radius,0x00ff00,true);
+	DrawCircle(location.x + camerashake,location.y + camerashake,radius,0x00ff00,true);
 }
 void Enemy::Hit(GameMain* gamemain)
 {

@@ -53,7 +53,6 @@ void Player::Update(GameMain* gamemain)
 			speedX /= 2;
 			speedY /= 2;
 		}
-
 		location.x += speedX;
 		location.y += speedY;
 	}
@@ -71,10 +70,10 @@ void Player::Update(GameMain* gamemain)
 	}
 }
 
-void Player::Draw() const
+void Player::Draw(int camerashake) const
 {
 	if (flg) {
-		DrawCircle(location.x, location.y, radius, 0xffffff, true);
+		DrawCircle(location.x + camerashake, location.y + camerashake, radius, 0xffffff, true);
 	}
 }
 

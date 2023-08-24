@@ -14,7 +14,7 @@ public:
 	char name = 'n';
 	CharaBase();
 	virtual void Update(GameMain* gamemain);		// 更新処理
-	virtual void Draw()const;	// 描画処理
+	virtual void Draw(int camerashake)const;	// 描画処理
 	virtual void Hit(GameMain* gamemain);			// 当たった時の処理
 	virtual bool GetFlg();		// フラグを取得
 	virtual void SetFlg(bool _flg);

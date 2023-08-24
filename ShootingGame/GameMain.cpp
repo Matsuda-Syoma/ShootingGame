@@ -12,6 +12,8 @@ GameMain::GameMain()
 	player = new Player;
 	ui = new UI;
 	EnemySpawnTimer = 0;
+	CamerashakeCount = 0;
+	Camerashake = 0;
 	Boom::LoadImages();
 }
 
@@ -28,7 +30,16 @@ AbstractScene* GameMain::Update()
 	// UIの更新
 	ui->Update(player->GetScore(), PlayerLife, GameOverFlg);
 
-	// ゲームクリア
+	if (CamerashakeCount > 0) {
+		Camerashake = round(CamerashakeCount / 2);
+		if (CamerashakeCount % 2 == 0) {
+			Camerashake *= -1;
+		}
+		printfDx("%d ", Camerashake);
+		CamerashakeCount--;
+	}
+
+	// ゲームクリアorボス出す
 	if (MaxEnemy <= 0) {
 
 	}
@@ -39,6 +50,7 @@ AbstractScene* GameMain::Update()
 			// プレイヤーが敵に当たったら
 			if (player->HitSphere(enemy[i]) && player->GetFlg()) {
 				player->Hit(this);
+				CamerashakeCount = 11;
 			}
 			// 敵のフラグが切れたらdeleteする
 			enemy[i]->Update(this);
@@ -55,6 +67,7 @@ AbstractScene* GameMain::Update()
 		if (bullet[i] != nullptr) {
 			// プレイヤーが自分以外の弾に当たったら
 			if (player->HitSphere(bullet[i]) && player->name != bullet[i]->GetParent() && player->GetFlg()) {
+				CamerashakeCount = 11;
 				player->Hit(this);
 			}
 			// 敵がプレイヤーの弾に当たったら
@@ -95,16 +108,17 @@ void GameMain::Draw() const
 	DrawBox(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x0031aa, true);
 
 	for (int i = 1; i < 10; i++) {
-		DrawBox((int)104 * i, 0, (int)104 * i + 1, SCREEN_HEIGHT, 0x6aceee, true);
+		DrawBox(((int)104 * i) + Camerashake, 0, ((int)104 * i + 1) + Camerashake, SCREEN_HEIGHT, 0x6aceee, true);
 	}
 	for (int i = 0; i < 11; i++) {
-		DrawBox(0, (int)104 * (i) + EnemySpawnTimer % 104, SCREEN_WIDTH, ((int)104 * i + 1) + EnemySpawnTimer % 104, 0x6aceee, true);
+		DrawBox(0, ((int)104 * (i)+EnemySpawnTimer % 104) + Camerashake / 2, SCREEN_WIDTH,
+			(((int)104 * i + 1) + EnemySpawnTimer % 104) + Camerashake / 2, 0x6aceee, true);
 	}
 
-	player->Draw();
+	player->Draw(Camerashake);
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (enemy[i] != nullptr) {
-			enemy[i]->Draw();
+			enemy[i]->Draw(Camerashake);
 		}
 	}
 
