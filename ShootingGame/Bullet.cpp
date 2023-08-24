@@ -19,12 +19,19 @@ Bullet::~Bullet()
 
 bool Bullet::Update()
 {
+
 	angle += angleVelocity;
+
+	// 角度に向かって移動量を指定する
 	moveX = (speed * cosf(angle));
 	moveY = (speed * sinf(angle));
+
+	// 移動量分座標を動かす
 	location.x += moveX;
 	location.y += moveY;
 
+
+	// 画面外に行ったらフラグを切る
 	if (location.x < 0) {
 		return false;
 	}
@@ -37,6 +44,7 @@ bool Bullet::Update()
 	if (location.y > SCREEN_HEIGHT) {
 		return false;
 	}
+
 	return true;
 }
 

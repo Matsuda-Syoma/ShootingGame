@@ -4,6 +4,8 @@ Player::Player()
 {
 	name = 'p';
 
+	SpawnCircle = LoadGraph("Resources/images/circle.png");
+
 	Init();
 
 	radius = 5;
@@ -26,16 +28,16 @@ void Player::Update(GameMain* gamemain)
 {
 
 	if ((SCREEN_WIDTH - UI_WIDTH) < location.x + radius) {
-		location.x = (SCREEN_WIDTH - UI_WIDTH) - radius;
+		location.x = (SCREEN_WIDTH - UI_WIDTH) - (float)radius;
 	}
 	if (0 > location.x - radius) {
-		location.x = 0 + radius;
+		location.x = 0 + (float)radius;
 	}
 	if ((SCREEN_HEIGHT) < location.y + radius) {
-		location.y = SCREEN_HEIGHT - radius;
+		location.y = SCREEN_HEIGHT - (float)radius;
 	}
 	if (-0 > location.y - radius) {
-		location.y = 0 + radius;
+		location.y = 0 + (float)radius;
 	}
 	if (flg) {
 		speedX = (round(((float)PAD_INPUT::GetPadThumbLX() / 32767) * 100) / 100) * speed;
@@ -74,6 +76,7 @@ void Player::Draw(int camerashake) const
 {
 	if (flg) {
 		DrawCircle(location.x + camerashake, location.y + camerashake, radius, 0xffffff, true);
+		DrawCircleGauge(location.x, location.y, 90,true,SpawnCircle);
 	}
 }
 

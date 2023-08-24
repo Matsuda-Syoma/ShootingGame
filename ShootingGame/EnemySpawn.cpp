@@ -3,13 +3,15 @@
 
 ENEMYDATA EnemySpawn::data[63];
 int EnemySpawn::row;
+
+// コンストラクタ
 EnemySpawn::EnemySpawn()
 {
 	int fp;
 	char buf[100];
 	char c;
-	int col = 1;	// 列
-	row = 0;		// 行
+	int col = 1;	// csvファイルの列
+	row = 0;		// csvファイルの行
 	int count = 0;
 
 	memset(buf, 0, sizeof(buf));
@@ -101,22 +103,22 @@ EnemySpawn::EnemySpawn()
 		}
 	}
 out:
-	//for (int i = 0; i < row; i++) {
-	//	printfDx("[%d][%d][%d][%d][%d][%d][%d]\n", data[i].x, data[i].y, data[i].SpawnTime, data[i].angle, data[i].speed, data[i].Bspeed, data[i].hp);
-	//}
 	FileRead_close(fp);
 }
 
 
 EnemySpawn::~EnemySpawn()
 {
+
 }
 
+// 敵情報の読み込み
 ENEMYDATA EnemySpawn::LoadEnemy(int i)
 {
 	return data[i];
 }
 
+// 読み込まれた敵の量の取得
 int EnemySpawn::GetMaxEnemy()
 {
 	return row;

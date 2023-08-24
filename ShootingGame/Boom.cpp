@@ -3,6 +3,7 @@
 
 int Boom::Images[11];
 
+// コンストラクタ
 Boom::Boom(float _x,float _y)
 {
 	x = _x;
@@ -11,16 +12,23 @@ Boom::Boom(float _x,float _y)
 	ImageCntDelay = COUNTDELAY;
 }
 
+// デストラクタ
 Boom::~Boom()
 {
+	for (int i = 0; i < 11; i++) {
+		Images[i] = NULL;
+	}
 }
 
+// 
 bool Boom::Update()
 {
+	// Delayが0になったら画像の変数を増やす
 	if (--ImageCntDelay < 0) {
 		ImageCnt++;
 		ImageCntDelay = COUNTDELAY;
 	}
+	// 画像の変数が11以上になったらフラグを切る
 	if (ImageCnt >= 11) {
 		return false;
 	}

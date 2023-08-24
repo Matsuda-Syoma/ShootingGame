@@ -8,22 +8,22 @@
 class Bullet : public SphereCollider
 {
 private:
-	int damage;		// ダメージ
-	int speed;		// 速度
-	float angle;	// 角度
+	int damage;			// ダメージ
+	int speed;			// 速度
+	float angle;		// 角度
 	float acceleration;	// 速度の変化量
 	float angleVelocity;// 角度の変化量
-	float moveX;
-	float moveY;
-	char parent;
+	float moveX;		// 移動する距離X
+	float moveY;		// 移動する距離Y
+	char parent;		// 生成した親の名前
 
 public:
-	Bullet();
+	// コンストラクタ
 	Bullet(char _name, float _x, float _y, float _angle, int _speed);
-	~Bullet();
-	bool Update();
-	void Draw()const;
-	void GetDamage();
-	char GetParent();
+	~Bullet();			// デストラクタ
+	bool Update();		// 
+	void Draw()const;	// 
+	void GetDamage();	// 
+	char GetParent();	// 
 };
 

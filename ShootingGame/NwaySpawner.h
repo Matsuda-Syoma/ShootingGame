@@ -3,7 +3,7 @@
 class NwaySpawner : public BulletsSpawner
 {
 private:
-	float angleDiff;
+	float angleDiff = 0;
 public:
 	void Shoot(GameMain* gamemain, char parentname, SphereCollider* parentcollider, float _angle, int _count, int _speed)override;
 };

@@ -1,8 +1,22 @@
 #include "GameMain.h"
+
+// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 GameMain::GameMain()
 {
 	GameOverFlg = false;
 	Sounds::LoadSounds();
+	Boom::LoadImages();
+
+	for (int i = 0; i < ENEMY_MAX; i++) {
+		enemy[i] = 0;
+	}
+	for (int i = 0; i < BULLET_MAX; i++) {
+		bullet[i] = 0;
+	}
+	for (int i = 0; i < ENEMY_MAX; i++) {
+		boom[i] = 0;
+	}
+
 	EnemySpawn::EnemySpawn();
 	MaxEnemy = EnemySpawn::GetMaxEnemy();
 	for (int i = 0; i < MaxEnemy; i++) {
@@ -14,7 +28,6 @@ GameMain::GameMain()
 	EnemySpawnTimer = 0;
 	CamerashakeCount = 0;
 	Camerashake = 0;
-	Boom::LoadImages();
 }
 
 GameMain::~GameMain()
@@ -100,31 +113,41 @@ void GameMain::Draw() const
 	// ”wŒi
 	DrawBox(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x0031aa, true);
 
+	// ”wŒi‚Ìcü
 	for (int i = 1; i < 10; i++) {
 		DrawBox(((int)104 * i) + Camerashake, 0, ((int)104 * i + 1) + Camerashake, SCREEN_HEIGHT, 0x6aceee, true);
 	}
+	// ”wŒi‚Ì‰¡ü
 	for (int i = 0; i < 11; i++) {
 		DrawBox(0, ((int)104 * (i)+EnemySpawnTimer % 104) + Camerashake / 2, SCREEN_WIDTH,
 			(((int)104 * i + 1) + EnemySpawnTimer % 104) + Camerashake / 2, 0x6aceee, true);
 	}
 
+	// ƒvƒŒƒCƒ„[‚Ì•`‰æ
 	player->Draw(Camerashake);
+
+	// “G‚Ì•`‰æ
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (enemy[i] != nullptr) {
 			enemy[i]->Draw(Camerashake);
 		}
 	}
 
+	// ’e‚Ì•`‰æ
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] != nullptr) {
 			bullet[i]->Draw();
 		}
 	}
+
+	// ”š”­‚Ì•`‰æ
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (boom[i] != nullptr) {
 			boom[i]->Draw();
 		}
 	}
+
+	// UI‚Ì•`‰æ
 	ui->Draw();
 }
 
@@ -138,6 +161,7 @@ bool GameMain::HitCheck()
 
 // ’e‚ÌoŒ»
 void GameMain::SpawnBullet(char parentname, SphereCollider* parentcollider, float _angle, int _speed) {
+	// ’e‚ªnullptr‚¾‚Á‚½‚ç¶¬‚µ‚Äƒ‹[ƒv‚ğ”²‚¯‚é
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if (bullet[i] == nullptr) {
 			bullet[i] = new Bullet(parentname, parentcollider->GetLocation().x, parentcollider->GetLocation().y, _angle, _speed);
@@ -148,6 +172,7 @@ void GameMain::SpawnBullet(char parentname, SphereCollider* parentcollider, floa
 
 // ”š”­‚ÌoŒ»
 void GameMain::SpawnBoom(float _x, float _y) {
+	// ”š”­‚ªnullptr‚¾‚Á‚½‚ç¶¬‚µ‚Äƒ‹[ƒv‚ğ”²‚¯‚é
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		if (boom[i] == nullptr) {
 			boom[i] = new Boom(_x, _y);
@@ -160,7 +185,8 @@ void GameMain::SpawnBoom(float _x, float _y) {
 void GameMain::SpawnEnemy() {
 	EnemySpawnTimer++;
 
-	for (int i = 0; i < 63; i++) {
+	// “G‚ªnullptr‚¾‚Á‚½‚ç¶¬‚µ‚Äƒ‹[ƒv‚ğ”²‚¯‚é
+	for (int i = 0; i < EnemySpawn::GetMaxEnemy(); i++) {
 		if (EnemySpawnTimer == data[i].SpawnTime) {
 			for (int j = 0; j < ENEMY_MAX; j++) {
 				if (enemy[j] == nullptr) {
