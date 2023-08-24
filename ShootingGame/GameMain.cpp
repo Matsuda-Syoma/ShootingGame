@@ -30,6 +30,7 @@ GameMain::GameMain()
 	EnemySpawnTimer = 0;
 	CamerashakeCount = 0;
 	Camerashake = 0;
+	BossFlg = false;
 }
 
 GameMain::~GameMain()
@@ -67,6 +68,15 @@ AbstractScene* GameMain::Update()
 
 	// ゲームクリアorボス出す
 	if (MaxEnemy <= 0) {
+		if (!BossFlg) {
+			for (int i = 0; i < ENEMY_MAX; i++) {
+				if (enemy[i] == nullptr) {
+					enemy[i] = new Enemy(520, 0, 1, 5, 90, 2500, 15, 25, 15);
+					BossFlg = true;
+					break;
+				}
+			}
+		}
 
 	}
 
@@ -99,7 +109,6 @@ AbstractScene* GameMain::Update()
 				if (enemy[j] != nullptr) {
 					if (enemy[j]->HitSphere(bullet[i]) && enemy[j]->name != bullet[i]->GetParent() && enemy[j]->GetFlg()) {
 						enemy[j]->Hit(this);
-						player->SetScore(enemy[j]->GetPoint());
 						bullet[i]->SetFlg(false);
 					}
 				}
@@ -284,4 +293,8 @@ void GameMain::CameraUpdate() {
 
 void GameMain::SetCameraShake(int _i) {
 	CamerashakeCount = _i;
+}
+
+void GameMain::SetScore(int _i) {
+	player->SetScore(_i);
 }

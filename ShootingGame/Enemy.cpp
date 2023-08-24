@@ -60,6 +60,7 @@ void Enemy::Hit(GameMain* gamemain)
 	--hp;
 	if (hp <= 0) {
 		gamemain->SpawnBoom(location.x, location.y);
+		gamemain->SetScore(point);
 		PlaySoundMem(Sounds::SE_Hit, DX_PLAYTYPE_BACK, true);
 		SetFlg(false);
 	}

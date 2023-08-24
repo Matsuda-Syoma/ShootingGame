@@ -18,6 +18,7 @@ private:
 	int MaxEnemy;
 	int CamerashakeCount;
 	int Camerashake;
+	bool BossFlg;
 public:
 	ENEMYDATA data[63];
 	Enemy* enemy[ENEMY_MAX];
@@ -44,5 +45,6 @@ public:
 	void CameraUpdate();
 	void SetCameraShake
 	(int _i);
+	void SetScore(int _i);
 };
 
