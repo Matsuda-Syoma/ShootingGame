@@ -53,6 +53,18 @@ void Player::Update(GameMain* gamemain)
 		if (shootdelay > 0) {
 			shootdelay--;
 		}
+		if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_DPAD_UP)) {
+			speedY = -speed;
+		}
+		if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_DPAD_DOWN)) {
+			speedY = speed;
+		}
+		if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_DPAD_LEFT)) {
+			speedX = -speed;
+		}
+		if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_DPAD_RIGHT)) {
+			speedX = speed;
+		}
 		if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_A) && shootdelay <= 0 || PAD_INPUT::GetNowKey(XINPUT_BUTTON_B) && shootdelay <= 0) {
 			weapon->Shoot(gamemain, name, this, 270, 1, 10);
 			PlaySoundMem(Sounds::SE_Shoot, DX_PLAYTYPE_BACK, true);
