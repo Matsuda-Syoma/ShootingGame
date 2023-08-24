@@ -51,40 +51,48 @@ EnemySpawn::EnemySpawn()
 			data[row].y = atoi(buf);
 			break;
 
-			// 出現タイミング
-		case 3:
-			data[row].SpawnTime = atoi(buf);
-			break;
-
 			// 角度
-		case 4:
+		case 3:
 			data[row].angle = atoi(buf);
 			break;
 
 			// 敵スピード
-		case 5: 
+		case 4: 
 			data[row].speed = atoi(buf);
 			break;
 
-			// 弾スピード
+			// HP
+		case 5:
+			data[row].hp = atoi(buf);
+			break;
+
+			// スコア
 		case 6:
+			data[row].score = atoi(buf);
+			break;
+
+			// 出現タイミング
+		case 7:
+			data[row].SpawnTime = atoi(buf);
+			break;
+
+			// 弾スピード
+		case 8:
 			data[row].Bspeed = atoi(buf);
 			break;
 
 			// 弾数
-		case 7:
+		case 9:
 			data[row].Bcount = atoi(buf);
 			break;
 
-			// HP
-		case 8:
-			data[row].hp = atoi(buf); 
+			// 発射タイミング
+		case 10:
+			data[row].shootframe = atoi(buf);
 			break;
-		// スコア
-		case 9:
-			data[row].score = atoi(buf);
-			break;
+
 		}
+
 		memset(buf, 0, sizeof(buf));
 
 		// EOFならoutに飛ぶ

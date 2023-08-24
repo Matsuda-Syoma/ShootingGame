@@ -1,1 +1,10 @@
 1040が端
+1X
+2Y
+3Angle
+4Speed
+5HP
+6Score
+7Timing
+8Bspeed
+9Bcount

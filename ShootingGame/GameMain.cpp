@@ -1,5 +1,7 @@
 #include "GameMain.h"
 
+//テスト
+#include "TItle.h"
 // コンストラクタ
 GameMain::GameMain()
 {
@@ -32,10 +34,28 @@ GameMain::GameMain()
 
 GameMain::~GameMain()
 {
+	delete player;
+	delete ui;
+	for (int i = 0; i < ENEMY_MAX; i++) {
+		delete  enemy[i];
+	}
+	for (int i = 0; i < ENEMY_MAX; i++) {
+		delete boom[i];
+	}
+	for (int i = 0; i < BULLET_MAX; i++) {
+		delete bullet[i];
+	}
+	for (int i = 0; i < CIRCLE_MAX; i++) {
+		delete deletecircle[i];
+	}
 }
 
 AbstractScene* GameMain::Update()
 {
+	if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_BACK)) {
+		return new Title();
+	}
+
 	SpawnEnemy();
 	// プレイヤーの更新
 	player->Update(this);
@@ -213,7 +233,7 @@ void GameMain::SpawnEnemy() {
 		if (EnemySpawnTimer == data[i].SpawnTime) {
 			for (int j = 0; j < ENEMY_MAX; j++) {
 				if (enemy[j] == nullptr) {
-					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].Bspeed, data[i].angle, data[i].score, data[i].Bcount);
+					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].Bspeed, data[i].angle, data[i].score, data[i].Bcount,data[i].hp,data[i].shootframe);
 					break;
 				}
 			}

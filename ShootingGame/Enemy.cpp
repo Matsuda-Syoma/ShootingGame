@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "GameMain.h"
-Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _score, int _bcount)
+Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _score, int _bcount,int _hp, int _sframe)
 {
 	name = 'e';
 	radius = 10;
@@ -9,9 +9,11 @@ Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _sc
 	speed = _speed;
 	angle = (_angle * (float)M_PI * 2) / 360;
 	point = _score;
-	ShootDelay = 12;
+	ShootDelay = _sframe;
 	Bcount = _bcount;
 	Bspeed = _bspeed;
+	hp = _hp;
+	ShootFrame = _sframe;
 }
 
 Enemy::~Enemy()
@@ -26,7 +28,7 @@ void Enemy::Update(GameMain* gamemain)
 	float Normalize = atan2(ShootAngleX, ShootAngleY) * 180.0f / M_PI;
 	if (--ShootDelay < 0) {
 		weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed);
-		ShootDelay = 60;
+		ShootDelay = ShootFrame;
 	}
 
 	if ((SCREEN_WIDTH - UI_WIDTH) < location.x - radius) {
@@ -55,9 +57,12 @@ void Enemy::Draw(int camerashake) const
 }
 void Enemy::Hit(GameMain* gamemain)
 {
-	gamemain->SpawnBoom(location.x,location.y);
-	PlaySoundMem(Sounds::SE_Hit, DX_PLAYTYPE_BACK, true);
-	SetFlg(false);
+	--hp;
+	if (hp <= 0) {
+		gamemain->SpawnBoom(location.x, location.y);
+		PlaySoundMem(Sounds::SE_Hit, DX_PLAYTYPE_BACK, true);
+		SetFlg(false);
+	}
 }
 
 int Enemy::GetPoint()

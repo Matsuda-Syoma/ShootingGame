@@ -9,7 +9,7 @@
 #define FRAMERATE 60.0			//フレームレート
 #define UPDATETIME 800
 
-#define BULLET_MAX 255
+#define BULLET_MAX 511
 #define ENEMY_MAX 30
 #define CIRCLE_MAX 2
 
@@ -24,4 +24,5 @@ struct ENEMYDATA
 	int Bcount;
 	int hp;
 	int score;
+	int shootframe;
 };
