@@ -80,7 +80,7 @@ AbstractScene* GameMain::Update()
 					if (enemy[j]->HitSphere(bullet[i]) && enemy[j]->name != bullet[i]->GetParent() && enemy[j]->GetFlg()) {
 						enemy[j]->Hit(this);
 						player->SetScore(enemy[j]->GetPoint());
-
+						bullet[i]->SetFlg(false);
 					}
 				}
 			}

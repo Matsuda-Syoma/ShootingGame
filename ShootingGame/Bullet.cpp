@@ -20,6 +20,10 @@ Bullet::~Bullet()
 bool Bullet::Update()
 {
 
+	if (!flg) {
+		return false;
+	}
+
 	angle += angleVelocity;
 
 	// Šp“x‚ÉŒü‚©‚Á‚ÄˆÚ“®—Ê‚ðŽw’è‚·‚é
@@ -63,4 +67,9 @@ void Bullet::GetDamage()
 char Bullet::GetParent()
 {
 	return parent;
+}
+
+void Bullet::SetFlg(bool _b) 
+{
+	flg = _b;
 }

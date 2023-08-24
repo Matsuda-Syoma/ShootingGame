@@ -8,6 +8,7 @@
 class Bullet : public SphereCollider
 {
 private:
+	bool flg = true;
 	int damage;			// ダメージ
 	int speed;			// 速度
 	float angle;		// 角度
@@ -25,5 +26,6 @@ public:
 	void Draw()const;	// 
 	void GetDamage();	// 
 	char GetParent();	// 
+	void SetFlg(bool _b);
 };
 
