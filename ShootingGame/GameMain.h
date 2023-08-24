@@ -39,5 +39,6 @@ public:
 	int GetPlayerLife();						// プレイヤーの残機を取得
 	void GameOver();
 	Location GetPlayer();
+	void CameraUpdate();
 };
 

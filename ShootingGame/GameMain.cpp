@@ -30,14 +30,7 @@ AbstractScene* GameMain::Update()
 	// UIの更新
 	ui->Update(player->GetScore(), PlayerLife, GameOverFlg);
 
-	if (CamerashakeCount > 0) {
-		Camerashake = round(CamerashakeCount / 2);
-		if (CamerashakeCount % 2 == 0) {
-			Camerashake *= -1;
-		}
-		printfDx("%d ", Camerashake);
-		CamerashakeCount--;
-	}
+	CameraUpdate();
 
 	// ゲームクリアorボス出す
 	if (MaxEnemy <= 0) {
@@ -199,4 +192,14 @@ void GameMain::GameOver()
 Location GameMain::GetPlayer() 
 {
 	return player->GetLocation();
+}
+
+void GameMain::CameraUpdate() {
+	if (CamerashakeCount > 0) {
+		Camerashake = round(CamerashakeCount / 2);
+		if (CamerashakeCount % 2 == 0) {
+			Camerashake *= -1;
+		}
+		CamerashakeCount--;
+	}
 }
