@@ -71,7 +71,7 @@ AbstractScene* GameMain::Update()
 		if (!BossFlg) {
 			for (int i = 0; i < ENEMY_MAX; i++) {
 				if (enemy[i] == nullptr) {
-					enemy[i] = new Enemy(520, 0, 1, 5, 90, 2500, 15, 25, 15);
+					enemy[i] = new Enemy(520, 0, 1, 5, 90, 2500, 15, 25, 30, 60);
 					BossFlg = true;
 					break;
 				}
@@ -242,7 +242,7 @@ void GameMain::SpawnEnemy() {
 		if (EnemySpawnTimer == data[i].SpawnTime) {
 			for (int j = 0; j < ENEMY_MAX; j++) {
 				if (enemy[j] == nullptr) {
-					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].Bspeed, data[i].angle, data[i].score, data[i].Bcount,data[i].hp,data[i].shootframe);
+					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].Bspeed, data[i].angle, data[i].score, data[i].Bcount,data[i].hp,data[i].shootframe,data[i].stopframe);
 					break;
 				}
 			}

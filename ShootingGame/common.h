@@ -25,4 +25,5 @@ struct ENEMYDATA
 	int hp;
 	int score;
 	int shootframe;
+	int stopframe;
 };

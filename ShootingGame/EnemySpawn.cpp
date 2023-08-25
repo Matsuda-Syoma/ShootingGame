@@ -76,18 +76,23 @@ EnemySpawn::EnemySpawn()
 			data[row].SpawnTime = atoi(buf);
 			break;
 
-			// 弾スピード
+			// 止まるタイミング
 		case 8:
+			data[row].stopframe = atoi(buf);
+			break;
+
+			// 弾スピード
+		case 9:
 			data[row].Bspeed = atoi(buf);
 			break;
 
 			// 弾数
-		case 9:
+		case 10:
 			data[row].Bcount = atoi(buf);
 			break;
 
 			// 発射タイミング
-		case 10:
+		case 11:
 			data[row].shootframe = atoi(buf);
 			break;
 

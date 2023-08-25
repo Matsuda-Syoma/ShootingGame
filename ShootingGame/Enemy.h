@@ -19,10 +19,11 @@ private:
 	int Bcount = 1;								// 弾の量
 	int Bspeed = 5;								// 弾のスピード
 	int ShootFrame = 60;						// 撃つフレーム
+	int StopFrame = -1;							// 止まるフレーム
 public:
 
-	// X座標、Y座標、速度、角度、スコア
-	Enemy(float _x, float _y, float _speed, int _bspeed, float _angle, int _score, int _bcount, int _hp,int _sframe);
+	// X座標,Y座標,速度,弾速度,角度,スコア,弾数,HP,弾の撃つ間隔,止まるタイミング
+	Enemy(float _x, float _y, float _speed, int _bspeed, float _angle, int _score, int _bcount, int _hp,int _sframe, int _stop);
 	~Enemy();
 
 	void Update(GameMain* gamemain) override;	// 処理の更新

@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "GameMain.h"
-Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _score, int _bcount,int _hp, int _sframe)
+Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _score, int _bcount,int _hp, int _sframe, int _stop)
 {
 	name = 'e';
 	radius = 10;
@@ -14,6 +14,7 @@ Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _sc
 	Bspeed = _bspeed;
 	hp = _hp;
 	ShootFrame = _sframe;
+	StopFrame = _stop;
 }
 
 Enemy::~Enemy()
@@ -45,10 +46,20 @@ void Enemy::Update(GameMain* gamemain)
 		flg = false;
 	}
 
-	moveX = (speed * cosf(angle));
-	moveY = (speed * sinf(angle));
-	location.x += moveX;
-	location.y += moveY;
+	if (StopFrame == -1) {
+		moveX = (speed * cosf(angle));
+		moveY = (speed * sinf(angle));
+		location.x += moveX;
+		location.y += moveY;
+	}
+	if (StopFrame > 0) {
+
+		StopFrame--;
+		moveX = (speed * cosf(angle));
+		moveY = (speed * sinf(angle));
+		location.x += moveX;
+		location.y += moveY;
+	}
 }
 
 void Enemy::Draw(int camerashake) const
