@@ -155,16 +155,16 @@ AbstractScene* GameMain::Update()
 void GameMain::Draw() const
 {
 	// îwåi
-	DrawBox(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x0031aa, true);
+	DrawBox(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x003166, true);
 
 	// îwåiÇÃècê¸
 	for (int i = 1; i < 10; i++) {
-		DrawBox(((int)104 * i) + Camerashake, 0, ((int)104 * i + 1) + Camerashake, SCREEN_HEIGHT, 0x6aceee, true);
+		DrawBox(((int)104 * i) + Camerashake, 0, ((int)104 * i + 1) + Camerashake, SCREEN_HEIGHT, 0x6ace55, true);
 	}
 	// îwåiÇÃâ°ê¸
 	for (int i = 0; i < 11; i++) {
 		DrawBox(0, ((int)104 * (i)+EnemySpawnTimer % 104) + Camerashake / 2, SCREEN_WIDTH,
-			(((int)104 * i + 1) + EnemySpawnTimer % 104) + Camerashake / 2, 0x6aceee, true);
+			(((int)104 * i + 1) + EnemySpawnTimer % 104) + Camerashake / 2, 0x6ace55, true);
 	}
 
 	// ÉvÉåÉCÉÑÅ[ÇÃï`âÊ
