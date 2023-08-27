@@ -6,8 +6,8 @@ Player::Player()
 
 	Init();
 
-	radius = 5;
-	speed = 7;
+	radius = 3;
+	speed = 5;
 
 	SpawnCount = 0;
 
@@ -97,6 +97,9 @@ void Player::Draw(int camerashake) const
 {
 	if (flg) {
 		DrawCircle(location.x + camerashake, location.y + camerashake, radius, 0xffffff, true);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 127);
+		DrawCircle(location.x + camerashake, location.y + camerashake, radius + 15, 0xffffff, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 }
 

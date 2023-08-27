@@ -71,7 +71,8 @@ AbstractScene* GameMain::Update()
 		if (!BossFlg) {
 			for (int i = 0; i < ENEMY_MAX; i++) {
 				if (enemy[i] == nullptr) {
-					enemy[i] = new Enemy(520, 0, 1, 5, 90, 2500, 15, 25, 30, 60);
+					enemy[i] = new Enemy(520, 0, 1, 3, 90, 2500, 15, 50, 60, 120);
+					enemy[i]->SetBossFlg(true);
 					BossFlg = true;
 					break;
 				}
