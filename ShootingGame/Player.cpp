@@ -87,7 +87,7 @@ void Player::Update(GameMain* gamemain)
 				SpawnTime = MAXSPAWNTIME;
 			}
 			else {
-				gamemain->GameOver();
+				gamemain->SetGameFlg(2);
 			}
 		}
 	}

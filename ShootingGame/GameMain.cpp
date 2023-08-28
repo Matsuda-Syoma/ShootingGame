@@ -5,7 +5,7 @@
 // コンストラクタ
 GameMain::GameMain()
 {
-	GameOverFlg = false;
+	GameFlg = 0;
 	Sounds::LoadSounds();
 	Boom::LoadImages();
 	DeleteCircle::LoadImages();
@@ -62,7 +62,7 @@ AbstractScene* GameMain::Update()
 	player->Update(this);
 
 	// UIの更新
-	ui->Update(player->GetScore(), PlayerLife, GameOverFlg);
+	ui->Update(player->GetScore(), PlayerLife, GameFlg);
 
 	CameraUpdate();
 
@@ -272,11 +272,6 @@ int GameMain::GetPlayerLife()
 	return PlayerLife;
 }
 
-void GameMain::GameOver()
-{
-	GameOverFlg = true;
-}
-
 Location GameMain::GetPlayer() 
 {
 	return player->GetLocation();
@@ -298,4 +293,8 @@ void GameMain::SetCameraShake(int _i) {
 
 void GameMain::SetScore(int _i) {
 	player->SetScore(_i);
+}
+
+void GameMain::SetGameFlg(int _flg) {
+	GameFlg = _flg;
 }

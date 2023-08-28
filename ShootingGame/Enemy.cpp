@@ -94,6 +94,9 @@ void Enemy::Hit(GameMain* gamemain)
 		gamemain->SpawnBoom(location.x, location.y);
 		gamemain->SetScore(point);
 		PlaySoundMem(Sounds::SE_Hit, DX_PLAYTYPE_BACK, true);
+		if (BossFlg) {
+			gamemain->SetGameFlg(1);
+		}
 		SetFlg(false);
 	}
 }

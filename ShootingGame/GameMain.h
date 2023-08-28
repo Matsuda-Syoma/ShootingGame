@@ -14,7 +14,7 @@ class GameMain : public AbstractScene
 private:
 	int EnemySpawnTimer;
 	int PlayerLife;
-	bool GameOverFlg;
+	int GameFlg;
 	int MaxEnemy;
 	int CamerashakeCount;
 	int Camerashake;
@@ -40,11 +40,11 @@ public:
 	void SpawnEnemy();								// 敵のスポーン
 	void SetPlayerLife(int _i);						// プレイヤーの残機を設定
 	int GetPlayerLife();							// プレイヤーの残機を取得
-	void GameOver();
 	Location GetPlayer();
 	void CameraUpdate();
 	void SetCameraShake
 	(int _i);
 	void SetScore(int _i);
+	void SetGameFlg(int _flg);
 };
 

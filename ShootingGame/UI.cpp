@@ -4,7 +4,7 @@ UI::UI()
 {
 	Score = 0;
 	Life = 2;
-	GameOverFlg = false;
+	GameFlg = 0;
 	UiFlash = 0;
 	UiFlashCount = 1;
 }
@@ -13,12 +13,12 @@ UI::~UI()
 {
 }
 
-void UI::Update(int _score, int _life, bool _gameover)
+void UI::Update(int _score, int _life, int _gameflg)
 {
 	Score = _score;
 	Life = _life;
-	GameOverFlg = _gameover;
-	if (GameOverFlg) {
+	GameFlg = _gameflg;
+	if (GameFlg != 0) {
 		UiFlash += UiFlashCount;
 	}
 	if (UiFlash > 60 || UiFlash < 0) {
@@ -39,7 +39,7 @@ void UI::Draw() const
 		DrawCircle(SCREEN_WIDTH - UI_WIDTH + 50 + i * 40, 250, 10, 0x000000, true);
 	}
 
-	if (GameOverFlg) {
+	if (GameFlg != 0) {
 		DrawBox(UISIZE, UISIZE, SCREEN_WIDTH - UI_WIDTH - UISIZE, SCREEN_HEIGHT - UISIZE, 0x000000, true);
 		DrawBox(UISIZE + 5, UISIZE + 5, SCREEN_WIDTH - UI_WIDTH - UISIZE - 5, SCREEN_HEIGHT - UISIZE - 5, 0x00ff00, true);
 		DrawBox(UISIZE + 10, UISIZE + 10, SCREEN_WIDTH - UI_WIDTH - UISIZE - 10, SCREEN_HEIGHT - UISIZE - 10, 0x000000, true);
@@ -50,5 +50,6 @@ void UI::Draw() const
 		DrawFormatString(UISIZE + 260, 500, 0x000000, "Aƒ{ƒ^ƒ“‚ÅŽŸ‚Ö");
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
+
 	SetFontSize(16);
 }

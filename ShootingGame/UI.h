@@ -6,14 +6,14 @@ class UI
 private:
 	int Score;
 	int Life;
-	bool GameOverFlg;
+	int GameFlg;
 	const int UISIZE = 140;
 	int UiFlash;
 	int UiFlashCount;
 public:
 	UI();
 	~UI();
-	void Update(int _score, int _life, bool _gameover);
+	void Update(int _score, int _life, int _gameflg);
 	void Draw()const;
 };
 
