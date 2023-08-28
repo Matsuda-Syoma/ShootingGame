@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "GameMain.h"
-Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _score, int _bcount,int _hp, int _sframe, int _stop)
+Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _score, int _bcount,int _hp, int _sframe, int _stop, int _bsize)
 {
 	name = 'e';
 	radius = 10;
@@ -12,6 +12,7 @@ Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _sc
 	ShootDelay = 10;
 	Bcount = _bcount;
 	Bspeed = _bspeed;
+	Bsize = _bsize;
 	hp = _hp;
 	ShootFrame = _sframe;
 	StopFrame = _stop;
@@ -42,17 +43,14 @@ void Enemy::Update(GameMain* gamemain)
 
 	float ShootAngleX = gamemain->GetPlayer().x - location.x;
 	float ShootAngleY = gamemain->GetPlayer().y - location.y;
-	float Normalize = atan2(ShootAngleX, ShootAngleY) * 180.0f / M_PI;
+	Normalize = atan2(ShootAngleX, ShootAngleY) * 180.0f / M_PI;
 
 	if (StopFrame == -1) {
 		moveX = (speed * cosf(angle));
 		moveY = (speed * sinf(angle));
 		location.x += moveX;
 		location.y += moveY;
-		if (--ShootDelay < 0) {
-			weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed);
-			ShootDelay = ShootFrame;
-		}
+		Shoot(gamemain);
 	}
 	if (StopFrame > 0) {
 
@@ -62,10 +60,7 @@ void Enemy::Update(GameMain* gamemain)
 		location.x += moveX;
 		location.y += moveY;
 		}else{
-		if (--ShootDelay < 0) {
-			weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed);
-			ShootDelay = ShootFrame;
-		}
+		Shoot(gamemain);
 	}
 
 	// É{ÉXÇÃÇ∆Ç´
@@ -78,10 +73,7 @@ void Enemy::Update(GameMain* gamemain)
 				BossMoveCount = BossMaxMoveCount;
 			}
 			// çUåÇ
-			if (--ShootDelay < 0) {
-				weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed);
-				ShootDelay = ShootFrame;
-			}
+			Shoot(gamemain);
 		}
 	}
 }
@@ -119,4 +111,11 @@ void Enemy::SetBossFlg(bool _flg)
 	BossMaxMoveCount = 180;
 	BossMoveCount = BossMaxMoveCount / 2;
 	Maxhp = hp;
+}
+
+void Enemy::Shoot(GameMain* gamemain) {
+	if (--ShootDelay < 0) {
+		weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed, Bsize);
+		ShootDelay = ShootFrame;
+	}
 }

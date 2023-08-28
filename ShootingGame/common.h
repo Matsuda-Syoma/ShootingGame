@@ -22,6 +22,7 @@ struct ENEMYDATA
 	int speed;
 	int Bspeed;
 	int Bcount;
+	int Bsize;
 	int hp;
 	int score;
 	int shootframe;

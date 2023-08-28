@@ -96,6 +96,11 @@ EnemySpawn::EnemySpawn()
 			data[row].shootframe = atoi(buf);
 			break;
 
+			// ’e‚Ì‘å‚«‚³
+		case 12:
+			data[row].Bsize = atoi(buf);
+			break;
+
 		}
 
 		memset(buf, 0, sizeof(buf));

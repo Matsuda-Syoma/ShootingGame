@@ -34,7 +34,7 @@ public:
 	void Draw() const override;						// 描画に関することを実装
 	void Game();									// ゲームの処理
 	bool HitCheck();							
-	void SpawnBullet(char parentname, SphereCollider* parentcollider, float _angle, int _speed);
+	void SpawnBullet(char parentname, SphereCollider* parentcollider, float _angle, int _speed, int _size);
 	void SpawnBoom(float _x, float _y);				// やられた時のエフェクトをスポーン
 	void SpawnCircle(float _x, float _y, int _i);	// 球を消す円のスポーン
 	void SpawnEnemy();								// 敵のスポーン

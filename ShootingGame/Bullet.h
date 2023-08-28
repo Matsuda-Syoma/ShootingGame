@@ -20,7 +20,7 @@ private:
 
 public:
 	// コンストラクタ
-	Bullet(char _name, float _x, float _y, float _angle, int _speed);
+	Bullet(char _name, float _x, float _y, float _angle, int _speed, int _size);
 	~Bullet();			// デストラクタ
 	bool Update();		// 
 	void Draw()const;	// 
