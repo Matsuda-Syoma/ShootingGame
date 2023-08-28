@@ -9,7 +9,7 @@ Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _sc
 	speed = _speed;
 	angle = (_angle * (float)M_PI * 2) / 360;
 	point = _score;
-	ShootDelay = 0;
+	ShootDelay = 10;
 	Bcount = _bcount;
 	Bspeed = _bspeed;
 	hp = _hp;
@@ -40,11 +40,19 @@ void Enemy::Update(GameMain* gamemain)
 		flg = false;
 	}
 
+	float ShootAngleX = gamemain->GetPlayer().x - location.x;
+	float ShootAngleY = gamemain->GetPlayer().y - location.y;
+	float Normalize = atan2(ShootAngleX, ShootAngleY) * 180.0f / M_PI;
+
 	if (StopFrame == -1) {
 		moveX = (speed * cosf(angle));
 		moveY = (speed * sinf(angle));
 		location.x += moveX;
 		location.y += moveY;
+		if (--ShootDelay < 0) {
+			weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed);
+			ShootDelay = ShootFrame;
+		}
 	}
 	if (StopFrame > 0) {
 
@@ -53,11 +61,12 @@ void Enemy::Update(GameMain* gamemain)
 		moveY = (speed * sinf(angle));
 		location.x += moveX;
 		location.y += moveY;
+		}else{
+		if (--ShootDelay < 0) {
+			weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed);
+			ShootDelay = ShootFrame;
+		}
 	}
-
-	float ShootAngleX = gamemain->GetPlayer().x - location.x;
-	float ShootAngleY = gamemain->GetPlayer().y - location.y;
-	float Normalize = atan2(ShootAngleX, ShootAngleY) * 180.0f / M_PI;
 
 	// ボスのとき
 	if (BossFlg) {
@@ -73,15 +82,6 @@ void Enemy::Update(GameMain* gamemain)
 				weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed);
 				ShootDelay = ShootFrame;
 			}
-		}
-	}
-
-	// ボスじゃないとき
-	else {
-
-		if (--ShootDelay < 0) {
-			weapon->Shoot(gamemain, name, this, 90 - Normalize, Bcount, Bspeed);
-			ShootDelay = ShootFrame;
 		}
 	}
 }
