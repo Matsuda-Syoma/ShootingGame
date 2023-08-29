@@ -9,6 +9,8 @@
 #define FRAMERATE 60.0			//フレームレート
 #define UPDATETIME 800
 
+#define RANKING_DATA 5
+
 #define BULLET_MAX 511
 #define ENEMY_MAX 30
 #define CIRCLE_MAX 2
