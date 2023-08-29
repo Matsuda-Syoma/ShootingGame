@@ -28,6 +28,7 @@
     <ClCompile Include="EnemySpawn.cpp" />
     <ClCompile Include="FPSController.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="InputRanking.cpp" />
     <ClCompile Include="LoadSounds.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NwaySpawner.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="EnemySpawn.h" />
     <ClInclude Include="FPSController.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="InputRanking.h" />
     <ClInclude Include="LoadSounds.h" />
     <ClInclude Include="NwaySpawner.h" />
     <ClInclude Include="PAD_INPUT.h" />
