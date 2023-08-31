@@ -1,10 +1,15 @@
 #include "InputRanking.h"
+#include "Ranking.h"
 #include <string>
+#include "DrawRanking.h"
+
 char MoziSmall[] = "abcdefghijklmnopqrstuvwxyz";
 char MoziBig[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 char MoziNumber[] = "01234567890123456789      ";
-InputRanking::InputRanking()
+
+InputRanking::InputRanking(int _score)
 {
+	Score = _score;
 	MoziSelectCol = 0;
 	MoziSelectRow = 0;
 	MoziSize = 48;
@@ -42,14 +47,12 @@ AbstractScene* InputRanking::Update()
 	switch (MoziSelectCol)
 	{
 	case 3:
-
+		// データ入力の終了
 		if (PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_A)) {
 			if (strcmp(MoziFrame, " ") != -1) {
-				//strcpy_s(gRanking[RANKING_DATA - 1].name, MoziFrame);
-				//gRanking[RANKING_DATA - 1].score = gScore;	//ランキングデータにスコアを登録
-				//SortRanking();						//ランキング並べ替え
-				//SaveRanking();						//ランキングデータの保存
-				//gGameMode = RANKING;				//ゲームモードの変更
+
+				Ranking::Insert(Score, MoziFrame);
+				return new DrawRanking();
 			}
 		}
 		break;

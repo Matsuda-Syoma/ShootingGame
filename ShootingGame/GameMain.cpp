@@ -1,5 +1,5 @@
 #include "GameMain.h"
-
+#include "InputRanking.h"
 //テスト
 #include "TItle.h"
 // コンストラクタ
@@ -56,6 +56,11 @@ AbstractScene* GameMain::Update()
 	if (PAD_INPUT::GetNowKey(XINPUT_BUTTON_BACK)) {
 		return new Title();
 	}
+
+	if (GameFlg != 0 && PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_A)) {
+		return new InputRanking(player->GetScore());
+	}
+
 
 	SpawnEnemy();
 	// プレイヤーの更新

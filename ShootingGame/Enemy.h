@@ -12,7 +12,7 @@ private:
 	float angleVelocity;						// 角度の変化量
 	float moveX;								// 移動する距離X
 	float moveY;								// 移動する距離Y
-	float Normalize = 0;
+	float Normalize = 0;						// 飛ばす向き
 	int hp = 1;									// HP
 	int Maxhp;
 	int point = 0;								// 増えるスコア

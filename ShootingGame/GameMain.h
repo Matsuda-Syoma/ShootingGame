@@ -14,7 +14,7 @@ class GameMain : public AbstractScene
 private:
 	int EnemySpawnTimer;
 	int PlayerLife;
-	int GameFlg;
+	int GameFlg;									// 0が通常、1がゲームクリア、2がゲームオーバー
 	int MaxEnemy;
 	int CamerashakeCount;
 	int Camerashake;

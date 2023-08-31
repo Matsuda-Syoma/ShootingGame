@@ -1,5 +1,6 @@
 #include "Title.h"
 #include "GameMain.h"
+#include "DrawRanking.h"
 Title::Title()
 {
 	Select = 0;
@@ -54,8 +55,7 @@ AbstractScene* Title::Update()
 			return new GameMain();
 			break;
 		case 1:
-			//gGameMode = RANKING;
-			//return new
+			return new DrawRanking();
 			break;
 		case 2:
 			//gGameMode = HELP;

@@ -3,8 +3,7 @@
 #include"FPSController.h"
 #include"SceneManager.h"
 #include"Title.h"
-#include"GameMain.h"
-#include"InputRanking.h"
+
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
 
 	//タイトルを設定
@@ -23,7 +22,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	//描画先画面を裏にする（ダブルバッファリング）
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	SceneManager scene = (dynamic_cast<AbstractScene*>(new InputRanking()));
+	SceneManager scene = (dynamic_cast<AbstractScene*>(new Title()));
 
 	FpsController FPSct(FRAMERATE, UPDATETIME);
 
