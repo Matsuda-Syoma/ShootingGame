@@ -5,6 +5,7 @@
 // コンストラクタ
 GameMain::GameMain()
 {
+	Ranking::ReadRanking();
 	GameFlg = 0;
 	Sounds::LoadSounds();
 	Boom::LoadImages();
@@ -58,7 +59,10 @@ AbstractScene* GameMain::Update()
 	}
 
 	if (GameFlg != 0 && PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_A)) {
-		return new InputRanking(player->GetScore());
+		if (Ranking::GetData(4).score < player->GetScore()) {
+			return new InputRanking(player->GetScore());
+		}
+		return new Title();
 	}
 
 
@@ -68,23 +72,6 @@ AbstractScene* GameMain::Update()
 
 	// UIの更新
 	ui->Update(player->GetScore(), PlayerLife, GameFlg);
-
-	CameraUpdate();
-
-	// ゲームクリアorボス出す
-	if (MaxEnemy <= 0) {
-		if (!BossFlg) {
-			for (int i = 0; i < ENEMY_MAX; i++) {
-				if (enemy[i] == nullptr) {
-					enemy[i] = new Enemy(520, 0, 1, 3, 90, 2500, 9, 50, 90, 120, 7);
-					enemy[i]->SetBossFlg(true);
-					BossFlg = true;
-					break;
-				}
-			}
-		}
-
-	}
 
 	// 敵の更新
 	for (int i = 0; i < ENEMY_MAX; i++) {
@@ -153,6 +140,24 @@ AbstractScene* GameMain::Update()
 				delete deletecircle[i];
 			}
 		}
+	}
+
+
+	CameraUpdate();
+
+	// ゲームクリアorボス出す
+	if (MaxEnemy <= 0) {
+		if (!BossFlg) {
+			for (int i = 0; i < ENEMY_MAX; i++) {
+				if (enemy[i] == nullptr) {
+					enemy[i] = new Enemy(520, 0, 1, 3, 90, 2500, 9, 10 * (Grade + 1), 90, 120, 7);
+					enemy[i]->SetBossFlg(true);
+					BossFlg = true;
+					break;
+				}
+			}
+		}
+
 	}
 
 	return this;
@@ -248,7 +253,7 @@ void GameMain::SpawnEnemy() {
 		if (EnemySpawnTimer == data[i].SpawnTime) {
 			for (int j = 0; j < ENEMY_MAX; j++) {
 				if (enemy[j] == nullptr) {
-					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].Bspeed, data[i].angle, data[i].score, data[i].Bcount,data[i].hp,data[i].shootframe,data[i].stopframe,data[i].Bsize);
+					enemy[j] = new Enemy(data[i].x, data[i].y, data[i].speed, data[i].Bspeed, data[i].angle, data[i].score, data[i].Bcount + (Grade + GetRand(1)), data[i].hp, data[i].shootframe, data[i].stopframe, data[i].Bsize);
 					break;
 				}
 			}
@@ -267,6 +272,7 @@ void GameMain::SpawnCircle(float _x, float _y, int _i) {
 	}
 }
 
+// プレイヤーの残機設定
 void GameMain::SetPlayerLife(int _i)
 {
 	PlayerLife += _i;
@@ -302,4 +308,14 @@ void GameMain::SetScore(int _i) {
 
 void GameMain::SetGameFlg(int _flg) {
 	GameFlg = _flg;
+}
+
+void GameMain::SetSpawnTime(int _i) {
+	EnemySpawnTimer = _i;
+}
+
+void GameMain::SetMaxEnemy() {
+	BossFlg = false;
+	MaxEnemy = EnemySpawn::GetMaxEnemy() + 1;
+	Grade += 1;
 }

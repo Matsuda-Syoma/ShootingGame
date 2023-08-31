@@ -8,7 +8,7 @@
 //ç\ë¢ëÃ
 struct RANKINGDATA {
 	int		no;
-	char	name[11];
+	char	name[10];
 	long	score;
 };
 

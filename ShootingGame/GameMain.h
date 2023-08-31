@@ -18,6 +18,7 @@ private:
 	int MaxEnemy;
 	int CamerashakeCount;
 	int Camerashake;
+	int Grade = 0;
 	bool BossFlg;
 public:
 	ENEMYDATA data[63];
@@ -46,5 +47,7 @@ public:
 	(int _i);
 	void SetScore(int _i);
 	void SetGameFlg(int _flg);
+	void SetSpawnTime(int _i);
+	void SetMaxEnemy();
 };
 

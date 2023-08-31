@@ -9,7 +9,7 @@ Enemy::Enemy(float _x, float _y, float _speed, int _bspeed, float _angle,int _sc
 	speed = _speed;
 	angle = (_angle * (float)M_PI * 2) / 360;
 	point = _score;
-	ShootDelay = 10;
+	ShootDelay = _sframe;
 	Bcount = _bcount;
 	Bspeed = _bspeed;
 	Bsize = _bsize;
@@ -95,7 +95,8 @@ void Enemy::Hit(GameMain* gamemain)
 		gamemain->SetScore(point);
 		PlaySoundMem(Sounds::SE_Hit, DX_PLAYTYPE_BACK, true);
 		if (BossFlg) {
-			gamemain->SetGameFlg(1);
+			gamemain->SetMaxEnemy();
+			gamemain->SetSpawnTime(0);
 		}
 		SetFlg(false);
 	}
@@ -111,6 +112,7 @@ void Enemy::SetBossFlg(bool _flg)
 	BossFlg = _flg;
 	acceleration = 2;
 	radius = 20;
+	ShootDelay = 10;
 	BossMaxMoveCount = 180;
 	BossMoveCount = BossMaxMoveCount / 2;
 	Maxhp = hp;
