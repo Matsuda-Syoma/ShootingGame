@@ -29,6 +29,7 @@ GameMain::GameMain()
 	player = new Player;
 	ui = new UI;
 	EnemySpawnTimer = 0;
+	BackGroundTimer = 0;
 	CamerashakeCount = 0;
 	Camerashake = 0;
 	BossFlg = false;
@@ -160,6 +161,10 @@ AbstractScene* GameMain::Update()
 
 	}
 
+	BackGroundTimer++;
+	if (BackGroundTimer > 104) {
+		BackGroundTimer = 0;
+	}
 	return this;
 }
 
@@ -174,8 +179,8 @@ void GameMain::Draw() const
 	}
 	// ”wŒi‚Ì‰¡ü
 	for (int i = 0; i < 11; i++) {
-		DrawBox(0, ((int)104 * (i)+EnemySpawnTimer % 104) + Camerashake / 2, SCREEN_WIDTH,
-			(((int)104 * i + 1) + EnemySpawnTimer % 104) + Camerashake / 2, 0x6ace55, true);
+		DrawBox(0, ((int)104 * (i)+BackGroundTimer) + Camerashake / 2, SCREEN_WIDTH,
+			(((int)104 * i + 1) + BackGroundTimer) + Camerashake / 2, 0x6ace55, true);
 	}
 
 	// ƒvƒŒƒCƒ„[‚Ì•`‰æ

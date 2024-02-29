@@ -13,6 +13,7 @@ class GameMain : public AbstractScene
 {
 private:
 	int EnemySpawnTimer;
+	int BackGroundTimer;
 	int PlayerLife;
 	int GameFlg;									// 0が通常、1がゲームクリア、2がゲームオーバー
 	int MaxEnemy;
