@@ -5,6 +5,10 @@ void CharaBase::Update(GameMain* gamemain)
 {
 }
 
+void CharaBase::Update(Custom* custom)
+{
+}
+
 CharaBase::CharaBase()
 {
 }

@@ -11,6 +11,10 @@ Bullet::Bullet(char _name, float _x,float _y,float _angle, int _speed, int _size
 	angle = (_angle * (float)M_PI * 2) / 360;
 	acceleration = 0;
 	angleVelocity = (0 * (float)M_PI * 2) / 360;
+	screenMinX = 0;
+	screenMinY = 0;
+	screenMaxX = SCREEN_WIDTH;
+	screenMaxY = SCREEN_HEIGHT;
 }
 
 Bullet::~Bullet()
@@ -36,16 +40,16 @@ bool Bullet::Update()
 
 
 	// 画面外に行ったらフラグを切る
-	if (location.x < 0) {
+	if (location.x < screenMinX) {
 		return false;
 	}
-	if (location.x > SCREEN_WIDTH) {
+	if (location.x > screenMaxX) {
 		return false;
 	}
-	if (location.y < 0) {
+	if (location.y < screenMinY) {
 		return false;
 	}
-	if (location.y > SCREEN_HEIGHT) {
+	if (location.y > screenMaxY) {
 		return false;
 	}
 
@@ -72,4 +76,11 @@ char Bullet::GetParent()
 void Bullet::SetFlg(bool _b) 
 {
 	flg = _b;
+}
+void Bullet::SetDeleteScreen(float x1, float y1, float x2, float y2)
+{
+	screenMinX = x1;
+	screenMinY = y1;
+	screenMaxX = x2;
+	screenMaxY = y2;
 }

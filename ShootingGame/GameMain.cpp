@@ -1,7 +1,7 @@
 #include "GameMain.h"
 #include "InputRanking.h"
 //テスト
-#include "TItle.h"
+#include "Title.h"
 // コンストラクタ
 GameMain::GameMain()
 {
@@ -65,7 +65,6 @@ AbstractScene* GameMain::Update()
 		}
 		return new Title();
 	}
-
 
 	SpawnEnemy();
 	// プレイヤーの更新

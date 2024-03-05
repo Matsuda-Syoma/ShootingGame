@@ -8,6 +8,7 @@ class Player : public CharaBase
 {
 private:
 	int Score;
+	int image;
 	NwaySpawner* weapon = new NwaySpawner;
 	float speedX;
 	float speedY;

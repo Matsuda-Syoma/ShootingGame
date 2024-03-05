@@ -22,6 +22,7 @@ void Player::Init() {
 	flg = true;
 	location.x = (SCREEN_WIDTH - UI_WIDTH) / 2;
 	location.y = SCREEN_HEIGHT - 20;
+	image = LoadGraph("Resources/images/player.bmp");
 }
 
 void Player::Update(GameMain* gamemain)
@@ -96,10 +97,10 @@ void Player::Update(GameMain* gamemain)
 void Player::Draw(int camerashake) const
 {
 	if (flg) {
-		DrawCircle(location.x + camerashake, location.y + camerashake, radius, 0xffffff, true);
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 127);
-		DrawCircle(location.x + camerashake, location.y + camerashake, radius + 15, 0xffffff, true);
-		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		DrawRotaGraph(location.x + camerashake, location.y + camerashake, 1.0, 0.0, image, true);
+		//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 127);
+		//DrawCircle(location.x + camerashake, location.y + camerashake, radius + 15, 0xffffff, true);
+		//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 }
 

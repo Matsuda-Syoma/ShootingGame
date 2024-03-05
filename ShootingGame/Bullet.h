@@ -17,6 +17,10 @@ private:
 	float moveX;		// 移動する距離X
 	float moveY;		// 移動する距離Y
 	char parent;		// 生成した親の名前
+	int screenMinX;
+	int screenMinY;
+	int screenMaxX;
+	int screenMaxY;
 
 public:
 	// コンストラクタ
@@ -27,5 +31,6 @@ public:
 	void GetDamage();	// 
 	char GetParent();	// 
 	void SetFlg(bool _b);
+	void SetDeleteScreen(float x1, float y1, float x2, float y2);
 };
 
